@@ -1,12 +1,3 @@
-if %PROCESSOR_ARCHITECTURE% == AMD64 (
-  set SUFFIX=-x64
-) else (
-  set SUFFIX=
-)
-
-set thirdparty=thirdparty
-set pythondir=win-python%PY_VER%%SUFFIX%
-
 set ADDITIONAL_OPTIONS=
 
 :: Add path for wanted dependencies
