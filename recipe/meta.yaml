@@ -19,11 +19,9 @@ source:
   #   sha256: 449bdbcad58014a4184cff78be86d5c97c70d0baf6c99af6062e20231f09e3a8                                  # [win64]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
   skip: True  # [py<36]
-  # The following skip will be removed in the feedstock
-  skip: True  # [py>36]
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin='x.x') }}
   missing_dso_whitelist:                 # [osx]
