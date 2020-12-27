@@ -1,5 +1,5 @@
 {% set name = "panda3d" %}
-{% set version = "1.10.7" %}
+{% set version = "1.10.8" %}
 
 package:
   name: {{ name|lower }}
@@ -7,24 +7,24 @@ package:
 
 source:
   - url: https://github.com/{{ name }}/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: b189313c4e9548e20b0facb0c078636e39467b149000919b80a7dd90b35a1939
+    sha256: d969e3d998944cbac3f6cb872d2fcff53361a1fa9997ff511dc72031318e96a6
     patches:
       - patches/osx_python_dep.patch  # [osx]
   # Additional tools
   - url: https://www.panda3d.org/download/{{ name }}-{{ version }}/{{ name }}-{{ version }}-tools-mac.tar.gz  # [osx]
-    sha256: 8450221d34c413c3d7c6ed402d9ede1c8b119f271c92984b5cd82ecba0fb3323                                  # [osx]
+    sha256: e1a077d7f736062d18f1edb84386697b882612168cfafbd7f0eae7e8de28bcc3  # [osx]
   # - url: https://www.panda3d.org/download/{{ name }}-{{ version }}/{{ name }}-{{ version }}-tools-win32.zip   # [win32]
   #   sha256: 06e77af615effed38066d665af0d0585d7fc1964b53d4915552fece6b8519d5c                                  # [win32]
   # - url: https://www.panda3d.org/download/{{ name }}-{{ version }}/{{ name }}-{{ version }}-tools-win64.zip   # [win64]
   #   sha256: 449bdbcad58014a4184cff78be86d5c97c70d0baf6c99af6062e20231f09e3a8                                  # [win64]
 
 build:
-  number: 1
-  skip: True  # [win]
-  skip: True  # [py<36]
+  number: 0
+  skip: true  # [win]
+  skip: true  # [py<36]
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin='x.x') }}
-  missing_dso_whitelist:                 # [osx]
+  missing_dso_whitelist:   # [osx]
     - Frameworks/Cg.framework/Cg         # [osx]
 
 requirements:
