@@ -1,5 +1,5 @@
 {% set name = "panda3d" %}
-{% set version = "1.10.8" %}
+{% set version = "1.10.9" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   - url: https://github.com/{{ name }}/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: d969e3d998944cbac3f6cb872d2fcff53361a1fa9997ff511dc72031318e96a6
+    sha256: c591d236cecf8ad8c5b6e940a4f55657b67de34d7e19888b324f7805564ef975
     patches:
       - patches/osx_python_dep.patch  # [osx]
   # Additional tools
   - url: https://www.panda3d.org/download/{{ name }}-{{ version }}/{{ name }}-{{ version }}-tools-mac.tar.gz  # [osx]
-    sha256: e1a077d7f736062d18f1edb84386697b882612168cfafbd7f0eae7e8de28bcc3  # [osx]
+    sha256: 668a3eb7def91921e1404497e5028ffb84a1c9213622afeb144c1cd85209161b  # [osx]
   # - url: https://www.panda3d.org/download/{{ name }}-{{ version }}/{{ name }}-{{ version }}-tools-win32.zip   # [win32]
   #   sha256: 06e77af615effed38066d665af0d0585d7fc1964b53d4915552fece6b8519d5c                                  # [win32]
   # - url: https://www.panda3d.org/download/{{ name }}-{{ version }}/{{ name }}-{{ version }}-tools-win64.zip   # [win64]
