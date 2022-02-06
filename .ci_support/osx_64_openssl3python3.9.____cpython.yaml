@@ -1,5 +1,7 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '10.9'
+assimp:
+- '5.2'
 c_compiler:
 - clang
 c_compiler_version:
@@ -25,7 +27,7 @@ macos_machine:
 openexr:
 - '2.5'
 openssl:
-- 1.1.1
+- '3'
 pin_run_as_build:
   freetype:
     max_pin: x
