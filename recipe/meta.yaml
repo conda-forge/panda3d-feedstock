@@ -10,6 +10,8 @@ source:
     sha256: 192b95135f91a1db493a839f9438207c8b51d2209d3a1d3b5f050c39931c4cd8
     patches:
       - patches/osx_python_dep.patch  # [osx]
+      - patches/openexr3_on_windows.patch
+      - patches/openexr3_non_windows.patch
   # Additional tools
   - url: https://www.panda3d.org/download/{{ name }}-{{ version }}/{{ name }}-{{ version }}-tools-mac.tar.gz  # [osx]
     sha256: 2aff700c69b7a8319eee5750d5c314f34e9d4e2f09dc079099d1265dd07dab66  # [osx]
