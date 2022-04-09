@@ -20,12 +20,14 @@ ffmpeg:
 - '4.4'
 freetype:
 - '2'
+imath:
+- '3.1'
 jpeg:
 - '9'
 libpng:
 - '1.6'
 openexr:
-- '2.5'
+- '3.1'
 openssl:
 - '3'
 pin_run_as_build:

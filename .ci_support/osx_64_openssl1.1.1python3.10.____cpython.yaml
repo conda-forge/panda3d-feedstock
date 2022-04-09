@@ -18,6 +18,8 @@ ffmpeg:
 - '4.4'
 freetype:
 - '2'
+imath:
+- '3.1'
 jpeg:
 - '9'
 libpng:
@@ -25,7 +27,7 @@ libpng:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 openexr:
-- '2.5'
+- '3.1'
 openssl:
 - 1.1.1
 pin_run_as_build:
