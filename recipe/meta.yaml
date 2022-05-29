@@ -19,7 +19,7 @@ source:
   #   sha256: 449bdbcad58014a4184cff78be86d5c97c70d0baf6c99af6062e20231f09e3a8                                  # [win64]
 
 build:
-  number: 4
+  number: 5
   skip: true  # [win]
   skip: true  # [py<36]
   run_exports:
