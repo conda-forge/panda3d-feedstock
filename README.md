@@ -40,6 +40,7 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
+<<<<<<< HEAD
               <td>linux_64_openssl1.1.1python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
@@ -149,6 +150,12 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx_64_openssl3python3.9.____cpython" alt="variant">
+=======
+              <td>win_64_python3.6.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=master&jobName=win&configuration=win_64_python3.6.____cpython" alt="variant">
+>>>>>>> 57feb03cd7ff6e30e477ae3d80b2b8147661d2ee
                 </a>
               </td>
             </tr>
