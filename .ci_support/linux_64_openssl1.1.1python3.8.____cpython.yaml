@@ -1,5 +1,5 @@
 assimp:
-- 5.2.3
+- 5.2.4
 c_compiler:
 - gcc
 c_compiler_version:
@@ -24,21 +24,11 @@ jpeg:
 - '9'
 libpng:
 - '1.6'
-openexr:
-- '2.5'
 openssl:
 - 1.1.1
 pin_run_as_build:
-  freetype:
-    max_pin: x
-  jpeg:
-    max_pin: x
-  libpng:
-    max_pin: x.x
   python:
     min_pin: x.x
-    max_pin: x.x
-  zlib:
     max_pin: x.x
 python:
 - 3.8.* *_cpython
