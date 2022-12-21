@@ -24,30 +24,34 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}                # [not win]
-    - {{ compiler('cxx') }}              # [not win]
-    - make                               # [not win]
-    - rsync                              # [not win]
-    - vs2017_win-64                      # [win64]
-    - vs2017_win-32                      # [win32]
+    - {{ compiler('c') }}                 # [not win]
+    - {{ compiler('cxx') }}               # [not win]
+    - make                                # [not win]
+    - rsync                               # [not win]
+    - vs2017_win-64                       # [win64]
+    - vs2017_win-32                       # [win32]
     - cmake
     - pkg-config
     - doxygen
-    - {{ cdt('mesa-dri-drivers') }}      # [linux]
-    - {{ cdt('mesa-libgl-devel') }}      # [linux]
-    - {{ cdt('mesa-libegl-devel') }}     # [linux]
-    - {{ cdt('libselinux-devel') }}      # [linux]
-    - {{ cdt('libxdamage-devel') }}      # [linux]
-    - {{ cdt('libx11-devel') }}          # [linux]
-    - {{ cdt('libxfixes-devel') }}       # [linux]
-    - {{ cdt('libxau-devel') }}          # [linux]
-    - {{ cdt('libxfixes') }}             # [linux]
-    - {{ cdt('libxxf86vm') }}            # [linux]
-    - {{ cdt('libxext') }}               # [linux]
-    - {{ cdt('libxcb') }}                # [linux]
-    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}       # [linux]
+    - {{ cdt('mesa-libgl-devel') }}       # [linux]
+    - {{ cdt('mesa-libegl-devel') }}      # [linux]
+    - {{ cdt('libselinux-devel') }}       # [linux]
+    - {{ cdt('libxdamage-devel') }}       # [linux]
+    - {{ cdt('libx11-devel') }}           # [linux]
+    - {{ cdt('libxfixes-devel') }}        # [linux]
+    - {{ cdt('libxau-devel') }}           # [linux]
+    - {{ cdt('libxfixes') }}              # [linux]
+    - {{ cdt('libxxf86vm') }}             # [linux]
+    - {{ cdt('libxext') }}                # [linux]
+    - {{ cdt('libxcb') }}                 # [linux]
+    - {{ cdt('xorg-x11-proto-devel') }}   # [linux]
+    - python                              # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
+    - numpy                               # [build_platform != target_platform]
   host:
     - python
+    - numpy
     # Package to specify to panda3d
     - eigen
     - assimp
