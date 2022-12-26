@@ -36,6 +36,7 @@ $PYTHON makepanda/makepanda.py \
     --wheel \
     --outputdir=build \
     --everything \
+    --verbose \
     $ADDITIONAL_OPTIONS 2> warnings.txt
 
 tail -n 50 warnings.txt
