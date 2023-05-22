@@ -1,11 +1,11 @@
-About panda3d
-=============
+About panda3d-feedstock
+=======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/panda3d-feedstock/blob/main/LICENSE.txt)
 
 Home: https://www.panda3d.org/
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/panda3d-feedstock/blob/main/LICENSE.txt)
 
 Summary: Panda3D is a game engine, a framework for 3D rendering and game development for Python and C++ programs
 
@@ -40,115 +40,115 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_openssl1.1.1python3.10.____cpython</td>
+              <td>linux_64_ffmpeg5python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_openssl1.1.1python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_ffmpeg5python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_openssl1.1.1python3.11.____cpython</td>
+              <td>linux_64_ffmpeg5python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_openssl1.1.1python3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_ffmpeg5python3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_openssl1.1.1python3.8.____cpython</td>
+              <td>linux_64_ffmpeg5python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_openssl1.1.1python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_ffmpeg5python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_openssl1.1.1python3.9.____cpython</td>
+              <td>linux_64_ffmpeg5python3.9.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_openssl1.1.1python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_ffmpeg5python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_openssl3python3.10.____cpython</td>
+              <td>linux_64_ffmpeg6python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_openssl3python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_ffmpeg6python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_openssl3python3.11.____cpython</td>
+              <td>linux_64_ffmpeg6python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_openssl3python3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_ffmpeg6python3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_openssl3python3.8.____cpython</td>
+              <td>linux_64_ffmpeg6python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_openssl3python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_ffmpeg6python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_openssl3python3.9.____cpython</td>
+              <td>linux_64_ffmpeg6python3.9.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_openssl3python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_ffmpeg6python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_openssl1.1.1python3.10.____cpython</td>
+              <td>osx_64_ffmpeg5python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_openssl1.1.1python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_ffmpeg5python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_openssl1.1.1python3.11.____cpython</td>
+              <td>osx_64_ffmpeg5python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_openssl1.1.1python3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_ffmpeg5python3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_openssl1.1.1python3.8.____cpython</td>
+              <td>osx_64_ffmpeg5python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_openssl1.1.1python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_ffmpeg5python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_openssl1.1.1python3.9.____cpython</td>
+              <td>osx_64_ffmpeg5python3.9.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_openssl1.1.1python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_ffmpeg5python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_openssl3python3.10.____cpython</td>
+              <td>osx_64_ffmpeg6python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_openssl3python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_ffmpeg6python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_openssl3python3.11.____cpython</td>
+              <td>osx_64_ffmpeg6python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_openssl3python3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_ffmpeg6python3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_openssl3python3.8.____cpython</td>
+              <td>osx_64_ffmpeg6python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_openssl3python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_ffmpeg6python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_openssl3python3.9.____cpython</td>
+              <td>osx_64_ffmpeg6python3.9.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11205&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_openssl3python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/panda3d-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_ffmpeg6python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr>
