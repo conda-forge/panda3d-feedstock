@@ -18,8 +18,8 @@ ffmpeg:
 - '6'
 freetype:
 - '2'
-jpeg:
-- '9'
+libjpeg_turbo:
+- 2.1.5
 libpng:
 - '1.6'
 macos_machine:
