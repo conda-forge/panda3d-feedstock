@@ -21,7 +21,7 @@ ffmpeg:
 freetype:
 - '2'
 libjpeg_turbo:
-- 2.1.5
+- '3'
 libpng:
 - '1.6'
 openssl:
