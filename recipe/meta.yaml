@@ -61,7 +61,7 @@ requirements:
     - bullet
     - ffmpeg
     - freetype
-    - jpeg
+    - libjpeg-turbo
     - libpng
     - libvorbis
     - openal-soft
