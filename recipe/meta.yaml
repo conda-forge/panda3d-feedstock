@@ -1,5 +1,5 @@
 {% set name = "panda3d" %}
-{% set version = "1.10.12" %}
+{% set version = "1.10.13" %}
 
 package:
   name: {{ name|lower }}
@@ -7,47 +7,39 @@ package:
 
 source:
   - url: https://github.com/{{ name }}/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: 023046fb5bde770a6b41500fee5bf9aa5d99166bf5c95f454cfd46cd2edc9254
+    sha256: b865882d8cbb44e7a9b1e030ecc071e689391644eb68b0d8ed78b970e8d4d2c7
     patches:
       - patches/osx_python_dep.patch  # [osx]
   # Additional tools
   - url: https://www.panda3d.org/download/{{ name }}-{{ version }}/{{ name }}-{{ version }}-tools-mac.tar.gz  # [osx]
-    sha256: 9d9ca90998354da551ca43a3e43448012f8b66e9750d56316506ec1f3b096e66  # [osx]
+    sha256: a626a087d2134ae98b876d663a0c9695f7ee197e13c0c3be6eb978dd99699825  # [osx]
 
 build:
-  number: 9
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin='x.x') }}
-  missing_dso_whitelist:   # [osx]
-    - Frameworks/Cg.framework/Cg         # [osx]
+  missing_dso_whitelist:                  # [osx]
+    - Frameworks/Cg.framework/Cg          # [osx]
 
 requirements:
   build:
-    - {{ compiler('c') }}                # [not win]
-    - {{ compiler('cxx') }}              # [not win]
-    - make                               # [not win]
-    - rsync                              # [not win]
-    - vs2017_win-64                      # [win64]
-    - vs2017_win-32                      # [win32]
+    - {{ compiler('c') }}                 # [not win]
+    - {{ compiler('cxx') }}               # [not win]
+    - make                                # [not win]
+    - rsync                               # [not win]
+    - vs2017_win-64                       # [win64]
+    - vs2017_win-32                       # [win32]
     - cmake
     - pkg-config
     - doxygen
-    - {{ cdt('mesa-dri-drivers') }}      # [linux]
-    - {{ cdt('mesa-libgl-devel') }}      # [linux]
-    - {{ cdt('mesa-libegl-devel') }}     # [linux]
-    - {{ cdt('libselinux-devel') }}      # [linux]
-    - {{ cdt('libxdamage-devel') }}      # [linux]
-    - {{ cdt('libx11-devel') }}          # [linux]
-    - {{ cdt('libxfixes-devel') }}       # [linux]
-    - {{ cdt('libxau-devel') }}          # [linux]
-    - {{ cdt('libxfixes') }}             # [linux]
-    - {{ cdt('libxxf86vm') }}            # [linux]
-    - {{ cdt('libxext') }}               # [linux]
-    - {{ cdt('libxcb') }}                # [linux]
-    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}       # [linux]
+    - {{ cdt('mesa-libgl-devel') }}       # [linux]
+    - {{ cdt('mesa-libegl-devel') }}      # [linux]
+    - {{ cdt('libselinux-devel') }}       # [linux]
   host:
     - python
+    - numpy
     # Package to specify to panda3d
     - eigen
     - assimp
@@ -59,13 +51,26 @@ requirements:
     - libvorbis
     - openal-soft
     - openssl
-    - openexr  2.5.5
+    - openexr
     - tifffile
     - zlib
     # Other packages
     - pip
     - libogg
     - pillow
+    # Linux GL packages
+    - xcb-util                           # [linux]
+    - xcb-util-wm                        # [linux]
+    - xcb-util-keysyms                   # [linux]
+    - xcb-util-image                     # [linux]
+    - xcb-util-renderutil                # [linux]
+    - xorg-libx11                        # [linux]
+    - xorg-libxext                       # [linux]
+    - xorg-libxdamage                    # [linux]
+    - xorg-libsm                         # [linux]
+    - xorg-libice                        # [linux]
+    - xorg-libxxf86vm                    # [linux]
+    - xorg-xf86vidmodeproto              # [linux]
   run:
     - python
     # Run dep
@@ -84,7 +89,17 @@ requirements:
     - xz
     # numpy
     - {{ pin_compatible('numpy') }}
-
+    # Linux GL packages
+    - libxcb                             # [linux]
+    - xcb-util-wm                        # [linux]
+    - xcb-util-keysyms                   # [linux]
+    - xcb-util-image                     # [linux]
+    - xcb-util-renderutil                # [linux]
+    - xorg-libx11                        # [linux]
+    - xorg-libxext                       # [linux]
+    - xorg-libsm                         # [linux]
+    - xorg-libice                        # [linux]
+    - xorg-xf86vidmodeproto              # [linux]
 
 test:
   imports:
