@@ -37,7 +37,7 @@ requirements:
     - {{ cdt('mesa-libgl-devel') }}       # [linux]
     - {{ cdt('mesa-libegl-devel') }}      # [linux]
     - {{ cdt('libselinux-devel') }}       # [linux]
- host:
+  host:
     - python
     - numpy
     # Package to specify to panda3d
