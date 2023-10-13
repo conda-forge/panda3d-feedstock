@@ -51,7 +51,7 @@ requirements:
     # Package to specify to panda3d
     - eigen
     - assimp
-    - bullet
+    - bullet-cpp
     - ffmpeg
     - freetype
     - libjpeg-turbo
@@ -69,7 +69,6 @@ requirements:
   run:
     - python
     # Run dep
-    - bullet
     - ffmpeg
     - openal-soft
     - openssl
