@@ -40,7 +40,6 @@ requirements:
  host:
     - python
     - numpy
-
     # Package to specify to panda3d
     - eigen
     - assimp
@@ -55,12 +54,10 @@ requirements:
     - openexr
     - tifffile
     - zlib
-
     # Other packages
     - pip
     - libogg
     - pillow
-
     # Linux GL packages
     - xcb-util                           # [linux]
     - xcb-util-wm                        # [linux]
@@ -77,14 +74,12 @@ requirements:
 
   run:
     - python
-
     # Run dep
     - bullet
     - ffmpeg
     - openal-soft
     - openssl
     - tifffile
-
     # Explicit dso
     - libtiff
     - ilmbase
@@ -94,10 +89,8 @@ requirements:
     - sqlite
     - tk
     - xz
-
     # numpy
     - {{ pin_compatible('numpy') }}
-
     # Linux GL packages
     - libxcb                             # [linux]
     - xcb-util-wm                        # [linux]
