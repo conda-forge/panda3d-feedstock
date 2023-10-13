@@ -1,6 +1,5 @@
 {% set name = "panda3d" %}
 {% set version = "1.10.13" %}
-
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -19,8 +18,8 @@ build:
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin='x.x') }}
-  missing_dso_whitelist:   # [osx]
-    - Frameworks/Cg.framework/Cg         # [osx]
+  missing_dso_whitelist:                  # [osx]
+    - Frameworks/Cg.framework/Cg          # [osx]
 
 requirements:
   build:
@@ -37,45 +36,55 @@ requirements:
     - {{ cdt('mesa-libgl-devel') }}       # [linux]
     - {{ cdt('mesa-libegl-devel') }}      # [linux]
     - {{ cdt('libselinux-devel') }}       # [linux]
-    - {{ cdt('libxdamage-devel') }}       # [linux]
-    - {{ cdt('libx11-devel') }}           # [linux]
-    - {{ cdt('libxfixes-devel') }}        # [linux]
-    - {{ cdt('libxau-devel') }}           # [linux]
-    - {{ cdt('libxfixes') }}              # [linux]
-    - {{ cdt('libxxf86vm') }}             # [linux]
-    - {{ cdt('libxext') }}                # [linux]
-    - {{ cdt('libxcb') }}                 # [linux]
-    - {{ cdt('xorg-x11-proto-devel') }}   # [linux]
-    - bison                               # [linux]
-  host:
+
+ host:
     - python
     - numpy
+
     # Package to specify to panda3d
     - eigen
     - assimp
     - bullet
     - ffmpeg
     - freetype
-    - jpeg
+    - libjpeg-turbo
     - libpng
     - libvorbis
     - openal-soft
     - openssl
-    - openexr  2.5.5
+    - openexr
     - tifffile
     - zlib
+
     # Other packages
     - pip
     - libogg
     - pillow
+
+    # Linux GL packages
+    - xcb-util                           # [linux]
+    - xcb-util-wm                        # [linux]
+    - xcb-util-keysyms                   # [linux]
+    - xcb-util-image                     # [linux]
+    - xcb-util-renderutil                # [linux]
+    - xorg-libx11                        # [linux]
+    - xorg-libxext                       # [linux]
+    - xorg-libxdamage                    # [linux]
+    - xorg-libsm                         # [linux]
+    - xorg-libice                        # [linux]
+    - xorg-libxxf86vm                    # [linux]
+    - xorg-xf86vidmodeproto              # [linux]
+
   run:
     - python
+
     # Run dep
     - bullet
     - ffmpeg
     - openal-soft
     - openssl
     - tifffile
+
     # Explicit dso
     - libtiff
     - ilmbase
@@ -85,9 +94,21 @@ requirements:
     - sqlite
     - tk
     - xz
+
     # numpy
     - {{ pin_compatible('numpy') }}
 
+    # Linux GL packages
+    - libxcb                             # [linux]
+    - xcb-util-wm                        # [linux]
+    - xcb-util-keysyms                   # [linux]
+    - xcb-util-image                     # [linux]
+    - xcb-util-renderutil                # [linux]
+    - xorg-libx11                        # [linux]
+    - xorg-libxext                       # [linux]
+    - xorg-libsm                         # [linux]
+    - xorg-libice                        # [linux]
+    - xorg-xf86vidmodeproto              # [linux]
 
 test:
   imports:
