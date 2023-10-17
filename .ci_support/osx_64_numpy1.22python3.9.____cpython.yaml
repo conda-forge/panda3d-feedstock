@@ -26,6 +26,10 @@ libpng:
 - '1.6'
 macos_machine:
 - x86_64-apple-darwin13.4.0
+numpy:
+- '1.22'
+openexr:
+- '3.2'
 openssl:
 - '3'
 pin_run_as_build:
@@ -39,5 +43,7 @@ target_platform:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
+- - python
+  - numpy
 zlib:
 - '1.2'
