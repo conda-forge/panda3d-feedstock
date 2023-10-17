@@ -15,7 +15,6 @@ for l in \
     vorbis \
     zlib \
     harfbuzz \
-    squish \
     opus
 do
     export ADDITIONAL_OPTIONS=--$l-incdir\ $PREFIX/include\ $ADDITIONAL_OPTIONS

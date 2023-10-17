@@ -55,7 +55,6 @@ requirements:
     - tifffile
     - zlib
     - harfbuzz
-    - squish
     - opusfile
     - libvorbis
     # Other packages
