@@ -13,7 +13,10 @@ for l in \
     python \
     tiff \
     vorbis \
-    zlib
+    zlib \
+    harfbuzz \
+    squish \
+    opus
 do
     export ADDITIONAL_OPTIONS=--$l-incdir\ $PREFIX/include\ $ADDITIONAL_OPTIONS
     export ADDITIONAL_OPTIONS=--$l-libdir\ $PREFIX/lib\ $ADDITIONAL_OPTIONS
@@ -25,7 +28,8 @@ export ADDITIONAL_OPTIONS=--eigen-incdir\ $PREFIX/include/eigen3\ $ADDITIONAL_OP
 for l in \
     egl \
     gles \
-    gles2
+    gles2 \
+    opencv
 do
     export ADDITIONAL_OPTIONS=--no-$l\ $ADDITIONAL_OPTIONS
 done
@@ -36,9 +40,11 @@ $PYTHON makepanda/makepanda.py \
     --wheel \
     --outputdir=build \
     --everything \
-    $ADDITIONAL_OPTIONS 2> warnings.txt
+    --verbose \
+    $ADDITIONAL_OPTIONS
 
-tail -n 50 warnings.txt
+# 2> warnings.txt
+# tail -n 50 warnings.txt
 
 # Install wheel which install python, bin
 $PYTHON -m pip install panda3d*.whl -vv

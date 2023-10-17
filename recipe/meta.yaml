@@ -54,7 +54,12 @@ requirements:
     - openexr  2.5.5
     - tifffile
     - zlib
+    - harfbuzz
+    - squish
+    - opusfile
+    - libvorbis
     # Other packages
+    - bison
     - pip
     - libogg
     - pillow
