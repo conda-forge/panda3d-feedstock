@@ -20,6 +20,8 @@ ffmpeg:
 - '6'
 freetype:
 - '2'
+harfbuzz:
+- '8'
 libjpeg_turbo:
 - '3'
 libpng:
@@ -28,8 +30,6 @@ macos_machine:
 - x86_64-apple-darwin13.4.0
 numpy:
 - '1.23'
-openexr:
-- '3.2'
 openssl:
 - '3'
 pin_run_as_build:
