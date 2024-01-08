@@ -1,5 +1,5 @@
 {% set name = "panda3d" %}
-{% set version = "1.10.13" %}
+{% set version = "1.10.14" %}
 
 package:
   name: {{ name|lower }}
@@ -7,19 +7,19 @@ package:
 
 source:
   - url: https://github.com/{{ name }}/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: b865882d8cbb44e7a9b1e030ecc071e689391644eb68b0d8ed78b970e8d4d2c7
+    sha256: 3ff568db545102f87d3e1191ba6a2f3cdc97ff2f62056973cf354743dd880591
     patches:
       - patches/osx_python_dep.patch  # [osx]
   # Additional tools
   - url: https://www.panda3d.org/download/{{ name }}-{{ version }}/{{ name }}-{{ version }}-tools-mac.tar.gz  # [osx]
-    sha256: a626a087d2134ae98b876d663a0c9695f7ee197e13c0c3be6eb978dd99699825  # [osx]
+    sha256: e172d1941a7be1d072de466bc0ea29a8d0d71e16a9aed45b86f69f177ad2813a  # [osx]
 
 build:
   number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin='x.x') }}
-  missing_dso_whitelist:                  # [osx]
+  missing_dso_whitelist:   # [osx]
     - Frameworks/Cg.framework/Cg          # [osx]
 
 requirements:
