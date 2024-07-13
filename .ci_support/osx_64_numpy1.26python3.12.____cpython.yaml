@@ -27,7 +27,7 @@ ffmpeg:
 freetype:
 - '2'
 harfbuzz:
-- '8'
+- '9'
 libjpeg_turbo:
 - '3'
 libpng:
@@ -52,4 +52,4 @@ zip_keys:
 - - python
   - numpy
 zlib:
-- '1.2'
+- '1'
