@@ -1,4 +1,4 @@
-{% set version = "1.10.14" %}
+{% set version = "1.10.15" %}
 
 package:
   name: panda3d
@@ -6,19 +6,19 @@ package:
 
 source:
   - url: https://github.com/panda3d/panda3d/archive/v{{ version }}.tar.gz
-    sha256: 3ff568db545102f87d3e1191ba6a2f3cdc97ff2f62056973cf354743dd880591
+    sha256: dfe93123a73570377ef77c2a1b6ecff46c9b507750d8bedde07f9244cc1e741e
     patches:
       - patches/osx_python_dep.patch  # [osx]
   # Additional tools
   - url: https://www.panda3d.org/download/panda3d-{{ version }}/panda3d-{{ version }}-tools-mac.tar.gz  # [osx]
-    sha256: e172d1941a7be1d072de466bc0ea29a8d0d71e16a9aed45b86f69f177ad2813a  # [osx]
+    sha256: 608d55b6ab445499d87d9ab5cc9c6ca62cf4021089df134001016d9bafa93896  # [osx]
 
 build:
-  number: 3
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('panda3d', max_pin='x.x') }}
-  missing_dso_whitelist:                  # [osx]
+  missing_dso_whitelist:   # [osx]
     - Frameworks/Cg.framework/Cg          # [osx]
 
 requirements:
