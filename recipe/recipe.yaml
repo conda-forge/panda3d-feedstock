@@ -1,0 +1,152 @@
+context:
+  name: panda3d
+  version: 1.10.14
+  build_num: 4
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/panda3d/panda3d/archive/v${{ version }}.tar.gz
+    sha256: 3ff568db545102f87d3e1191ba6a2f3cdc97ff2f62056973cf354743dd880591
+    
+    patches:
+    - if: osx
+      then:
+        - patches/osx_python_dep.patch
+
+  # Additional tools
+  - if: osx
+    then:
+    - url: https://www.panda3d.org/download/panda3d-${{ version }}/panda3d-${{ version }}-tools-mac.tar.gz
+      sha256: e172d1941a7be1d072de466bc0ea29a8d0d71e16a9aed45b86f69f177ad2813a
+
+build:
+  number: ${{ build_num }}
+  skip:
+    - win
+  dynamic_linking:
+    missing_dso_allowlist:
+      - if: osx
+        then:
+        - Frameworks/Cg.framework/Cg
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - if: unix
+      then:
+        - make
+        - rsync
+    - cmake
+    - pkg-config
+    - doxygen
+    - if: linux
+      then:
+      - ${{ cdt('mesa-dri-drivers') }}
+      - ${{ cdt('mesa-libgl-devel') }}
+      - ${{ cdt('mesa-libegl-devel') }}
+      - ${{ cdt('libselinux-devel') }}
+  host:
+    - python
+    - numpy
+    # Package to specify to panda3d
+    - eigen
+    - assimp
+    - bullet-cpp
+    - ffmpeg
+    - freetype
+    - libjpeg-turbo
+    - libpng
+    - libvorbis
+    - openal-soft
+    - openssl
+    - openexr  2.5.5.*
+    - tifffile
+    - zlib
+    - harfbuzz
+    - opusfile
+    - libvorbis
+    # Other packages
+    - bison
+    - pip
+    - libogg
+    - pillow
+    # Linux GL packages
+    - if: linux
+      then:
+      - xcb-util
+      - xcb-util-wm
+      - xcb-util-keysyms
+      - xcb-util-image
+      - xcb-util-renderutil
+      - xorg-libx11
+      - xorg-libxext
+      - xorg-libxdamage
+      - xorg-libsm
+      - xorg-libice
+      - xorg-libxxf86vm
+      - xorg-xf86vidmodeproto
+  run:
+    - python
+    # Run dep
+    - ffmpeg
+    - openal-soft
+    - openssl
+    - tifffile
+    # Explicit dso
+    - libtiff
+    - ilmbase
+    - libffi
+    - if: unix
+      then:
+      - ncurses
+      - readline
+    - sqlite
+    - tk
+    - xz
+    # numpy
+    - ${{ pin_compatible('numpy') }}
+    # Linux GL packages
+    - if: linux
+      then:
+      - libxcb
+      - xcb-util-wm
+      - xcb-util-keysyms
+      - xcb-util-image
+      - xcb-util-renderutil
+      - xorg-libx11
+      - xorg-libxext
+      - xorg-libsm
+      - xorg-libice
+      - xorg-xf86vidmodeproto
+  run_exports:
+    - ${{ pin_subpackage(name, upper_bound='x.x') }}
+
+tests:
+  - python:
+      imports:
+        - panda3d
+
+about:
+  homepage: https://www.panda3d.org/
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Panda3D is a game engine, a framework for 3D rendering and game development for Python and C++ programs
+  description: |
+    Panda3D is a game engine, a framework for 3D rendering 
+    and game development for Python and C++ programs. Panda3D 
+    is open-source and free for any purpose, including commercial 
+    ventures, thanks to its liberal license. To learn more about 
+    Panda3D's capabilities, visit the gallery and the feature list. 
+    To learn how to use Panda3D, check the documentation resources. 
+    If you get stuck, ask for help from our active community.
+  documentation: https://docs.panda3d.org/1.10/python/index
+  repository: https://github.com/panda3d/panda3d
+
+extra:
+  recipe-maintainers:
+    - ymontmarin
