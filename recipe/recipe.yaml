@@ -1,7 +1,7 @@
 context:
   name: panda3d
-  version: 1.10.14
-  build_num: 4
+  version: 1.10.15
+  build_num: 0
 
 package:
   name: ${{ name }}
@@ -9,7 +9,7 @@ package:
 
 source:
   - url: https://github.com/panda3d/panda3d/archive/v${{ version }}.tar.gz
-    sha256: 3ff568db545102f87d3e1191ba6a2f3cdc97ff2f62056973cf354743dd880591
+    sha256: dfe93123a73570377ef77c2a1b6ecff46c9b507750d8bedde07f9244cc1e741e
     
     patches:
     - if: osx
@@ -64,11 +64,12 @@ requirements:
     - libvorbis
     - openal-soft
     - openssl
-    - openexr  2.5.5.*
     - tifffile
     - zlib
     - harfbuzz
     - opusfile
+    # openexr v2.5.5 pinning is incompatible with other recent packages pinning
+    # - openexr 2.5.5*
     # Other packages
     - bison
     - pip
@@ -82,6 +83,8 @@ requirements:
       - xcb-util-keysyms
       - xcb-util-image
       - xcb-util-renderutil
+      - xorg-xproto
+      - xorg-kbproto
       - xorg-libx11
       - xorg-libxext
       - xorg-libxdamage
@@ -98,7 +101,9 @@ requirements:
     - tifffile
     # Explicit dso
     - libtiff
-    - ilmbase
+    # ilmbase is still on an old version (2.5.5, as openexr)
+    # and its pinning is incompatible with other recent packages pinning
+    # - ilmbase
     - libffi
     - if: unix
       then:
