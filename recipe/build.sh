@@ -8,7 +8,6 @@ for l in \
     jpeg \
     openal \
     openssl \
-    openexr \
     png \
     python \
     tiff \
