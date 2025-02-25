@@ -69,7 +69,6 @@ requirements:
     - zlib
     - harfbuzz
     - opusfile
-    - libvorbis
     # Other packages
     - bison
     - pip
