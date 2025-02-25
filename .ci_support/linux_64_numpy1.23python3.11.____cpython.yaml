@@ -9,9 +9,9 @@ c_compiler_version:
 c_stdlib:
 - sysroot
 c_stdlib_version:
-- '2.12'
+- '2.17'
 cdt_name:
-- cos6
+- cos7
 channel_sources:
 - conda-forge
 channel_targets:
@@ -27,7 +27,7 @@ ffmpeg:
 freetype:
 - '2'
 harfbuzz:
-- '8'
+- '9'
 libjpeg_turbo:
 - '3'
 libpng:
@@ -52,4 +52,4 @@ zip_keys:
 - - python
   - numpy
 zlib:
-- '1.2'
+- '1'
