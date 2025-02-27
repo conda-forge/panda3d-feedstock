@@ -69,10 +69,10 @@ requirements:
     - if: unix
       then:
         - opusfile
+        - bison
     # openexr v2.5.5 pinning is incompatible with other recent packages pinning
     # - openexr 2.5.5*
     # Other packages
-    - bison
     - pip
     - libogg
     - pillow
