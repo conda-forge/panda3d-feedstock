@@ -65,7 +65,10 @@ requirements:
     - tifffile
     - zlib
     - harfbuzz
-    - opusfile
+    # not available on win
+    - if: unix
+      then:
+        - opusfile
     # openexr v2.5.5 pinning is incompatible with other recent packages pinning
     # - openexr 2.5.5*
     # Other packages
