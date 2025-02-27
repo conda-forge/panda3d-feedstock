@@ -41,9 +41,6 @@ $PYTHON makepanda/makepanda.py \
     --verbose \
     $ADDITIONAL_OPTIONS
 
-# 2> warnings.txt
-# tail -n 50 warnings.txt
-
 # Install wheel which install python, bin
 $PYTHON -m pip install panda3d*.whl -vv
 
