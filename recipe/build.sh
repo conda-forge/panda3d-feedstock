@@ -57,9 +57,12 @@ mkdir $PREFIX/etc || true
 mkdir $PREFIX/etc/panda3d
 cp etc/*                   $PREFIX/etc/panda3d
 
+# Install headers
+mkdir $PREFIX/include/panda3d
+cp -r include/*           $PREFIX/include/panda3d
+
 # Make share
 mkdir $PREFIX/share/panda3d
-rsync -a include           $PREFIX/share/panda3d
 rsync -a models            $PREFIX/share/panda3d
 rsync -a plugins           $PREFIX/share/panda3d
 cp ReleaseNotes            $PREFIX/share/panda3d
