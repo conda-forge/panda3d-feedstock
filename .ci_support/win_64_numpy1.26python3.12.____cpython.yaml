@@ -1,0 +1,41 @@
+assimp:
+- 5.4.3
+bullet_cpp:
+- '3.25'
+c_compiler:
+- vs2019
+c_stdlib:
+- vs
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- vs2019
+ffmpeg:
+- '7'
+freetype:
+- '2'
+harfbuzz:
+- '10'
+libjpeg_turbo:
+- '3'
+libpng:
+- '1.6'
+numpy:
+- '1.26'
+openssl:
+- '3'
+pin_run_as_build:
+  python:
+    min_pin: x.x
+    max_pin: x.x
+python:
+- 3.12.* *_cpython
+target_platform:
+- win-64
+zip_keys:
+- - python
+  - numpy
+zlib:
+- '1'
