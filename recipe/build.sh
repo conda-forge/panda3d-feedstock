@@ -47,20 +47,23 @@ $PYTHON -m pip install panda3d*.whl -vv
 cd build
 
 # Install lib in sysroot-folder
-rsync -a lib               $PREFIX
+rsync -a lib                  $PREFIX
 
 # Make etc 
 mkdir $PREFIX/etc || true
 mkdir $PREFIX/etc/panda3d
-cp etc/*                   $PREFIX/etc/panda3d
+cp -r etc/*                   $PREFIX/etc/panda3d
+cp etc/*                      $PREFIX/etc/panda3d
 
 # Install headers
+mkdir $PREFIX/include || true
 mkdir $PREFIX/include/panda3d
-cp -r include/*           $PREFIX/include/panda3d
+cp -r include/*               $PREFIX/include/panda3d
+cp include/*                  $PREFIX/include/panda3d
 
 # Make share
 mkdir $PREFIX/share/panda3d
-rsync -a models            $PREFIX/share/panda3d
-rsync -a plugins           $PREFIX/share/panda3d
-cp ReleaseNotes            $PREFIX/share/panda3d
-cp LICENSE                 $PREFIX/share/panda3d
+rsync -a models               $PREFIX/share/panda3d
+rsync -a plugins              $PREFIX/share/panda3d
+cp ReleaseNotes               $PREFIX/share/panda3d
+cp LICENSE                    $PREFIX/share/panda3d
