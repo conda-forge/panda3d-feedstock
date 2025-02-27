@@ -10,17 +10,16 @@ package:
 source:
   - url: https://github.com/panda3d/panda3d/archive/v${{ version }}.tar.gz
     sha256: dfe93123a73570377ef77c2a1b6ecff46c9b507750d8bedde07f9244cc1e741e
-    
-    # patches:
-    # - if: osx
-    #   then:
-    #     - patches/osx_python_dep.patch
 
   # Additional tools
   - if: osx
     then:
     - url: https://www.panda3d.org/download/panda3d-${{ version }}/panda3d-${{ version }}-tools-mac.tar.gz
       sha256: 608d55b6ab445499d87d9ab5cc9c6ca62cf4021089df134001016d9bafa93896
+  - if: win
+    then:
+    - url: https://www.panda3d.org/download/panda3d-${{ version }}/panda3d-${{ version }}-tools-win64.zip
+      sha256: 1102d881b9d32d67ac2be004a22122475834355ffd842b738b2323e0ae07e53c
 
 build:
   number: ${{ build_num }}
@@ -32,9 +31,9 @@ build:
 
 requirements:
   build:
-    - ${{ compiler('c') }}
+    - ${{ compiler("c") }}
     - ${{ stdlib("c") }}
-    - ${{ compiler('cxx') }}
+    - ${{ compiler("cxx") }}
     - if: unix
       then:
         - make
@@ -42,15 +41,13 @@ requirements:
     - cmake
     - pkg-config
     - doxygen
-    - if: linux
-      then:
-      - ${{ cdt('mesa-dri-drivers') }}
-      - ${{ cdt('mesa-libgl-devel') }}
-      - ${{ cdt('mesa-libegl-devel') }}
-      - ${{ cdt('libselinux-devel') }}
   host:
     - python
     - numpy
+    - pip
+    - setuptools
+    - libogg
+    - pillow
     # Package to specify to panda3d
     - eigen
     - assimp
@@ -72,13 +69,11 @@ requirements:
         - bison
     # openexr v2.5.5 pinning is incompatible with other recent packages pinning
     # - openexr 2.5.5*
-    # Other packages
-    - pip
-    - libogg
-    - pillow
     # Linux GL packages
     - if: linux
       then:
+      - libgl-devel
+      - libegl-devel
       - xcb-util
       - xcb-util-wm
       - xcb-util-keysyms
@@ -112,9 +107,9 @@ requirements:
       - readline
     - sqlite
     - tk
-    - xz
+    - xz-tools
     # numpy
-    - ${{ pin_compatible('numpy') }}
+    - ${{ pin_compatible("numpy") }}
     # Linux GL packages
     - if: linux
       then:
@@ -129,7 +124,7 @@ requirements:
       - xorg-libice
       - xorg-xf86vidmodeproto
   run_exports:
-    - ${{ pin_subpackage(name, upper_bound='x.x') }}
+    - ${{ pin_subpackage(name, upper_bound="x.x") }}
 
 tests:
   - python:
