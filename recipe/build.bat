@@ -1,7 +1,7 @@
 set ADDITIONAL_OPTIONS=
 
 :: Add path for wanted dependencies
-FOR %%l in (^
+for %%l in (^
     assimp ^
     bullet ^
     ffmpeg ^
@@ -13,7 +13,7 @@ FOR %%l in (^
     python ^
     tiff ^
     vorbis ^
-    zlib) DO (
+    zlib) do (
     call set "ADDITIONAL_OPTIONS= --%%l-incdir=%LIBRARY_INC% %%ADDITIONAL_OPTIONS%%"
     call set "ADDITIONAL_OPTIONS= --%%l-libdir=%LIBRARY_LIB% %%ADDITIONAL_OPTIONS%%"
 )
@@ -22,11 +22,11 @@ FOR %%l in (^
 set ADDITIONAL_OPTIONS= --eigen-incdir %LIBRARY_INC%\eigen3 %ADDITIONAL_OPTIONS%
 
 :: Disable certain options
-FOR %%l in (^
+for %%l in (^
     nvidiacg ^
     egl ^
     gles ^
-    gles2) DO (
+    gles2) do (
     call set "ADDITIONAL_OPTIONS=--no-%%l %%ADDITIONAL_OPTIONS%%"
 )
 
@@ -36,7 +36,10 @@ FOR %%l in (^
 if errorlevel 1 exit 1
 
 :: Install wheel which install python, bin
-for %f in (panda3d*.whl) do %PYTHON% -m pip install %f -vv
+:: On Windows the wildcard must be unfold manually
+for %%f in (panda3d*.whl) do (
+    %PYTHON% -m pip install %%f -vv
+)
 if errorlevel 1 exit 1
 
 cd build
