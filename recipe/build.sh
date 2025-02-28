@@ -53,13 +53,11 @@ rsync -a lib                  $PREFIX
 mkdir $PREFIX/etc || true
 mkdir $PREFIX/etc/panda3d
 cp -r etc/*                   $PREFIX/etc/panda3d
-cp etc/*                      $PREFIX/etc/panda3d
 
 # Install headers
 mkdir $PREFIX/include || true
 mkdir $PREFIX/include/panda3d
 cp -r include/*               $PREFIX/include/panda3d
-cp include/*                  $PREFIX/include/panda3d
 
 # Make share
 mkdir $PREFIX/share/panda3d
