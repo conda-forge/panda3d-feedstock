@@ -35,9 +35,6 @@ FOR %%l in (^
 %PYTHON% makepanda/makepanda.py --threads=2 --outputdir=build --wheel --everything --msvc-version=14.2 --windows-sdk=10 %ADDITIONAL_OPTIONS%
 if errorlevel 1 exit 1
 
-:: For some reason makepanda script on windows exits from outputdir
-cd ..
-
 :: Install wheel which install python, bin
 %PYTHON% -m pip install panda3d*.whl -vv
 if errorlevel 1 exit 1
