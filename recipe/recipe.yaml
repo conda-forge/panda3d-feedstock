@@ -11,15 +11,22 @@ source:
   - url: https://github.com/panda3d/panda3d/archive/v${{ version }}.tar.gz
     sha256: dfe93123a73570377ef77c2a1b6ecff46c9b507750d8bedde07f9244cc1e741e
 
+
+    patches:
+    - if: win
+      then:
+       - patches/fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch
+
   # Additional tools
   - if: osx
     then:
     - url: https://www.panda3d.org/download/panda3d-${{ version }}/panda3d-${{ version }}-tools-mac.tar.gz
       sha256: 608d55b6ab445499d87d9ab5cc9c6ca62cf4021089df134001016d9bafa93896
-  - if: win
-    then:
-    - url: https://www.panda3d.org/download/panda3d-${{ version }}/panda3d-${{ version }}-tools-win64.zip
-      sha256: 1102d881b9d32d67ac2be004a22122475834355ffd842b738b2323e0ae07e53c
+
+#  - if: win
+#    then:
+#    - url: https://www.panda3d.org/download/panda3d-${{ version }}/panda3d-${{ version }}-tools-win64.zip
+#      sha256: 1102d881b9d32d67ac2be004a22122475834355ffd842b738b2323e0ae07e53c
 
 build:
   number: ${{ build_num }}

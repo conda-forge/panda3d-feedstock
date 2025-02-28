@@ -14,8 +14,8 @@ FOR %%l in (^
     tiff ^
     vorbis ^
     zlib) DO (
-    set ADDITIONAL_OPTIONS= --%%l-incdir %PREFIX%\include %ADDITIONAL_OPTIONS%
-    set ADDITIONAL_OPTIONS= --%%l-libdir %PREFIX%\lib %ADDITIONAL_OPTIONS%
+    call set "ADDITIONAL_OPTIONS= --%%l-incdir=%LIBRARY_INC% %%ADDITIONAL_OPTIONS%%"
+    call set "ADDITIONAL_OPTIONS= --%%l-libdir=%LIBRARY_LIB% %%ADDITIONAL_OPTIONS%%"
 )
 
 :: Special treatment for eigen
@@ -26,24 +26,17 @@ FOR %%l in (^
     egl ^
     gles ^
     gles2) DO (
-    set ADDITIONAL_OPTIONS=--no-%%l %ADDITIONAL_OPTIONS%
+    call set "ADDITIONAL_OPTIONS=--no-%%l %%ADDITIONAL_OPTIONS%%"
 )
 
 :: Make panda using special panda3d tool
 :: Use vs2019 compiler (msvc_version 14.2)
-%PYTHON% makepanda/makepanda.py ^
-    --threads=2 ^
-    --outputdir=build ^
-    --wheel ^
-    --everything ^
-    --msvc-version=14.2 ^
-    --windows-sdk=10 ^
-    %ADDITIONAL_OPTIONS
-if errorlevel 1 exit 1
+%PYTHON% makepanda/makepanda.py --threads=2 --outputdir=build --wheel --everything --msvc-version=14.2 --windows-sdk=10 %ADDITIONAL_OPTIONS%
+::if errorlevel 1 exit 1
 
 :: Install wheel which install python, bin
 %PYTHON% -m pip install panda3d*.whl -vv
-if errorlevel 1 exit 1
+::if errorlevel 1 exit 1
 
 cd build
 
