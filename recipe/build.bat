@@ -19,10 +19,11 @@ FOR %%l in (^
 )
 
 :: Special treatment for eigen
-set ADDITIONAL_OPTIONS= --eigen-incdir %PREFIX%\include\eigen3 %ADDITIONAL_OPTIONS%
+set ADDITIONAL_OPTIONS= --eigen-incdir %LIBRARY_INC%\eigen3 %ADDITIONAL_OPTIONS%
 
 :: Disable certain options
 FOR %%l in (^
+    nvidiacg ^
     egl ^
     gles ^
     gles2) DO (
