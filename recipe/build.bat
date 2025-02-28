@@ -36,7 +36,7 @@ FOR %%l in (^
 if errorlevel 1 exit 1
 
 :: Install wheel which install python, bin
-%PYTHON% -m pip install panda3d*.whl -vv
+for %f in (panda3d*.whl) do %PYTHON% -m pip install %f -vv
 if errorlevel 1 exit 1
 
 cd build
