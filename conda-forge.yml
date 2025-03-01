@@ -11,3 +11,6 @@ azure:
     variables:
       CONDA_BLD_PATH: "C:\\bld"
       MINIFORGE_HOME: "C:\\Miniforge"
+  # toggle for storing the conda build_artifacts directory (including the
+  # built packages) as an Azure pipeline artifact that can be downloaded
+  store_build_artifacts: True
