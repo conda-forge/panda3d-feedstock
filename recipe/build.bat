@@ -35,7 +35,7 @@ for %%l in (^
 %PYTHON% makepanda/makepanda.py --threads=2 --outputdir=build --wheel --everything --msvc-version=14.2 --windows-sdk=10 %ADDITIONAL_OPTIONS%
 if errorlevel 1 exit 1
 
-:: Install wheel which install python, bin
+:: Install wheel which install python
 :: On Windows the wildcard must be unfold manually
 for %%f in (panda3d*.whl) do (
     %PYTHON% -m pip install %%f -vv
@@ -44,7 +44,8 @@ if errorlevel 1 exit 1
 
 cd build
 
-:: Install lib in sysroot-folder
+:: Install bin & lib in sysroot-folder
+robocopy bin %LIBRARY_BIN% /E >nul
 robocopy lib %LIBRARY_LIB% /E >nul
 
 :: Make etc 
