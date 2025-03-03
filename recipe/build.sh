@@ -35,33 +35,38 @@ done
 # Make panda using special panda3d tool
 $PYTHON makepanda/makepanda.py \
     --threads=${CPU_COUNT} \
-    --wheel \
     --outputdir=build \
     --everything \
     --verbose \
     $ADDITIONAL_OPTIONS
 
-# Install wheel which install python, bin
-$PYTHON -m pip install panda3d*.whl -vv
+$PYTHON makepanda/installpanda.py \
+    --outputdir=build \
+    --destdir=$PREFIX \
+    --prefix=$PREFIX \
+    --verbose
 
-cd build
+# # Install wheel which install python, bin
+# $PYTHON -m pip install panda3d*.whl -vv
 
-# Install lib in sysroot-folder
-rsync -a lib                  $PREFIX
+# cd build
 
-# Make etc 
-mkdir $PREFIX/etc || true
-mkdir $PREFIX/etc/panda3d
-cp -r etc/*                   $PREFIX/etc/panda3d
+# # Install lib in sysroot-folder
+# rsync -a lib                  $PREFIX
 
-# Install headers
-mkdir $PREFIX/include || true
-mkdir $PREFIX/include/panda3d
-cp -r include/*               $PREFIX/include/panda3d
+# # Make etc 
+# mkdir $PREFIX/etc || true
+# mkdir $PREFIX/etc/panda3d
+# cp -r etc/*                   $PREFIX/etc/panda3d
 
-# Make share
-mkdir $PREFIX/share/panda3d
-rsync -a models               $PREFIX/share/panda3d
-rsync -a plugins              $PREFIX/share/panda3d
-cp ReleaseNotes               $PREFIX/share/panda3d
-cp LICENSE                    $PREFIX/share/panda3d
+# # Install headers
+# mkdir $PREFIX/include || true
+# mkdir $PREFIX/include/panda3d
+# cp -r include/*               $PREFIX/include/panda3d
+
+# # Make share
+# mkdir $PREFIX/share/panda3d
+# rsync -a models               $PREFIX/share/panda3d
+# rsync -a plugins              $PREFIX/share/panda3d
+# cp ReleaseNotes               $PREFIX/share/panda3d
+# cp LICENSE                    $PREFIX/share/panda3d
