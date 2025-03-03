@@ -49,7 +49,7 @@ cd build
 
 # Install /lib
 mkdir $PREFIX/lib || true
-for file in /lib/*.*; do
+for file in lib/*.*; do
   if [ -f "$file" ]; then
     cp "$file"                       $PREFIX/lib
   fi
