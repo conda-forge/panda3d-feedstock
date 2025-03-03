@@ -34,6 +34,7 @@ done
 
 # Build panda using special panda3d tool
 $PYTHON makepanda/makepanda.py \
+    --wheel \
     --threads=${CPU_COUNT} \
     --outputdir=build \
     --everything \
