@@ -54,7 +54,6 @@ for file in lib/*.*; do
     cp "$file"                       $PREFIX/lib
   fi
 done
-cp lib/gdk-pixbuf-*/*/loaders.cache  $PREFIX/lib
 
 # Install /etc
 # Etc that are created by installpanda.py and not yet manually handled
