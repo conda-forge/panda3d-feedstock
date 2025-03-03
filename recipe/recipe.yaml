@@ -31,16 +31,12 @@ build:
         - lib/python*/site-packages/direct/**/*
         - lib/python*/site-packages/panda3d_tools/**/*
         - lib/python*/site-packages/pandac/**/*
-        - lib/python*/site-packages/panda3d/__pycache__/*.pyc
-        - share/panda3d/direct/**/__pycache__/*.pyc
       - if: win
         then:
         - Lib/site-packages/deploy_libs/**/*
         - Lib/site-packages/direct/**/*
         - Lib/site-packages/panda3d_tools/**/*
         - Lib/site-packages/pandac/**/*
-        - Lib/site-packages/panda3d/__pycache__/*.pyc
-        - Library/share/panda3d/direct/**/__pycache__/*.pyc
 
 requirements:
   build:
@@ -55,54 +51,62 @@ requirements:
     - pkg-config
     - doxygen
   host:
-    - python
-    - numpy
-    - pip
-    - setuptools
     - libogg
     - pillow
-    # Package to specify to panda3d
-    - eigen
+    - pip
+    - python
+    - numpy
+    - setuptools
+    # Common packages to specify to panda3d
     - assimp
     - bullet-cpp
+    - eigen
     - ffmpeg
+    - fftw
+    - fltk
     - freetype
+    - gtk3
+    - harfbuzz
     - libjpeg-turbo
+    - libode
     - libpng
     - libvorbis
+    - mimalloc
     - openal-soft
     - openssl
     - tifffile
     - zlib
-    - harfbuzz
-    # not available on win
+    - wxpython
+    # Packages to specify to panda3d not on win
     - if: unix
       then:
-        - opusfile
         - bison
+        - opusfile
     # openexr v2.5.5 pinning is incompatible with other recent packages pinning
     # - openexr 2.5.5*
     # Linux GL packages
     - if: linux
       then:
-      - libgl-devel
       - libegl-devel
+      - libgl-devel
+      - libxcb
       - xcb-util
-      - xcb-util-wm
-      - xcb-util-keysyms
       - xcb-util-image
+      - xcb-util-keysyms
       - xcb-util-renderutil
-      - xorg-xproto
+      - xcb-util-wm
       - xorg-kbproto
-      - xorg-libx11
-      - xorg-libxext
-      - xorg-libxdamage
-      - xorg-libsm
       - xorg-libice
+      - xorg-libsm
+      - xorg-libxdamage
+      - xorg-libxext
       - xorg-libxxf86vm
+      - xorg-libx11
       - xorg-xf86vidmodeproto
+      - xorg-xproto
   run:
     - python
+    - ${{ pin_compatible("numpy") }}
     # Run dep
     - ffmpeg
     - openal-soft
@@ -114,28 +118,31 @@ requirements:
     # and its pinning is incompatible with other recent packages pinning
     # - ilmbase
     - libffi
+    - sqlite
+    - tk
+    - xz-tools
     - if: unix
       then:
       - ncurses
       - readline
-    - sqlite
-    - tk
-    - xz-tools
-    # numpy
-    - ${{ pin_compatible("numpy") }}
     # Linux GL packages
     - if: linux
       then:
       - libxcb
-      - xcb-util-wm
-      - xcb-util-keysyms
+      - xcb-util
       - xcb-util-image
+      - xcb-util-keysyms
       - xcb-util-renderutil
-      - xorg-libx11
-      - xorg-libxext
-      - xorg-libsm
+      - xcb-util-wm
+      - xorg-kbproto
       - xorg-libice
+      - xorg-libsm
+      - xorg-libxdamage
+      - xorg-libxext
+      - xorg-libxxf86vm
+      - xorg-libx11
       - xorg-xf86vidmodeproto
+      - xorg-xproto
   run_exports:
     - ${{ pin_subpackage(name, upper_bound="x.x") }}
 
