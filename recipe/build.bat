@@ -30,9 +30,17 @@ for %%l in (^
     call set "ADDITIONAL_OPTIONS=--no-%%l %%ADDITIONAL_OPTIONS%%"
 )
 
-:: Make panda using special panda3d tool
+:: Build panda using special panda3d tool
 :: Use vs2019 compiler (msvc_version 14.2)
-%PYTHON% makepanda/makepanda.py --threads=2 --outputdir=build --wheel --everything --msvc-version=14.2 --windows-sdk=10 %ADDITIONAL_OPTIONS%
+%PYTHON% makepanda/makepanda.py ^
+    --wheel ^
+    --threads=2 ^
+    --outputdir=build ^
+    --everything ^
+    --verbose ^
+    --msvc-version=14.2 ^
+    --windows-sdk=10 ^
+    %ADDITIONAL_OPTIONS%
 if errorlevel 1 exit 1
 
 :: Install wheel which install python
@@ -57,11 +65,20 @@ mkdir %LIBRARY_INC%\panda3d
 robocopy include %LIBRARY_INC%\panda3d /E >nul
 
 :: Make share
+mkdir %LIBRARY_PREFIX%\share\panda3d\direct
+robocopy direct %LIBRARY_PREFIX%\share\panda3d\direct /E >nul
+
 mkdir %LIBRARY_PREFIX%\share\panda3d\models
 robocopy models %LIBRARY_PREFIX%\share\panda3d\models /E >nul
 
+mkdir %LIBRARY_PREFIX%\share\panda3d\pandac
+robocopy pandac %LIBRARY_PREFIX%\share\panda3d\pandac /E >nul
+
 mkdir %LIBRARY_PREFIX%\share\panda3d\plugins
 robocopy plugins %LIBRARY_PREFIX%\share\panda3d\plugins /E >nul
+
+mkdir %LIBRARY_PREFIX%\share\panda3d\samples
+robocopy ..\samples %LIBRARY_PREFIX%\share\panda3d\samples /E >nul
 
 copy ReleaseNotes %LIBRARY_PREFIX%\share\panda3d\
 copy LICENSE %LIBRARY_PREFIX%\share\panda3d\
