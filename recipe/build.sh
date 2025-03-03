@@ -5,22 +5,30 @@ for l in \
     assimp \
     bullet \
     ffmpeg \
+    fftw \
+    fltk \
     freetype \
+    gtk3 \
+    harfbuzz \
     jpeg \
+    mimalloc \
+    ode \
     openal \
     openssl \
+    opus \
     png \
     python \
+    swresample \
+    swscale \
     tiff \
     vorbis \
-    zlib \
-    harfbuzz \
-    opus
+    wx \
+    zlib
 do
     export ADDITIONAL_OPTIONS=--$l-incdir\ $PREFIX/include\ $ADDITIONAL_OPTIONS
     export ADDITIONAL_OPTIONS=--$l-libdir\ $PREFIX/lib\ $ADDITIONAL_OPTIONS
 done
-# Special treatment for eigen
+# Special treatment for eigen MAYBE OTHER FROM THE LIST ABOVE
 export ADDITIONAL_OPTIONS=--eigen-incdir\ $PREFIX/include/eigen3\ $ADDITIONAL_OPTIONS
 # Exclude unwanted dependencies
 for l in \
