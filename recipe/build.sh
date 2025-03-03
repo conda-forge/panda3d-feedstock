@@ -49,7 +49,11 @@ cd build
 
 # Install /lib
 mkdir $PREFIX/lib || true
-cp /lib/*.*                          $PREFIX/lib
+for file in /lib/*.*; do
+  if [ -f "$file" ]; then
+    cp "$file"                       $PREFIX/lib
+  fi
+done
 cp lib/gdk-pixbuf-*/*/loaders.cache  $PREFIX/lib
 
 # Install /etc
@@ -57,12 +61,12 @@ cp lib/gdk-pixbuf-*/*/loaders.cache  $PREFIX/lib
 # - etc/ld.so.conf.d/panda3d.conf
 mkdir $PREFIX/etc || true
 mkdir $PREFIX/etc/panda3d
-cp -r etc/*                   $PREFIX/etc/panda3d
+cp -r etc/*                          $PREFIX/etc/panda3d
 
 # Install /include
 mkdir $PREFIX/include || true
 mkdir $PREFIX/include/panda3d
-cp -r include/*               $PREFIX/include/panda3d
+cp -r include/*                      $PREFIX/include/panda3d
 
 # Make /share
 # Shares that are created by installpanda.py and not yet manually handled
@@ -72,13 +76,13 @@ cp -r include/*               $PREFIX/include/panda3d
 # - share/mime-info/panda3d.keys
 # - share/mime-info/panda3d.mime
 mkdir $PREFIX/share/panda3d
-rsync -a direct               $PREFIX/share/panda3d
-rsync -a models               $PREFIX/share/panda3d
-rsync -a pandac               $PREFIX/share/panda3d
-rsync -a plugins              $PREFIX/share/panda3d
-rsync -a samples              $PREFIX/share/panda3d
-cp ReleaseNotes               $PREFIX/share/panda3d
-cp LICENSE                    $PREFIX/share/panda3d
+rsync -a direct                      $PREFIX/share/panda3d
+rsync -a models                      $PREFIX/share/panda3d
+rsync -a pandac                      $PREFIX/share/panda3d
+rsync -a plugins                     $PREFIX/share/panda3d
+rsync -a samples                     $PREFIX/share/panda3d
+cp ReleaseNotes                      $PREFIX/share/panda3d
+cp LICENSE                           $PREFIX/share/panda3d
 
 # Copy the [de]activate scripts to $PREFIX/etc/conda/[de]activate.d.
 # This will allow them to be run on environment activation.
