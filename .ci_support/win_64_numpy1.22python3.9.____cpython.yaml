@@ -14,14 +14,20 @@ cxx_compiler:
 - vs2019
 ffmpeg:
 - '7'
+fftw:
+- '3'
 freetype:
 - '2'
 harfbuzz:
 - '10'
 libjpeg_turbo:
 - '3'
+libode:
+- 0.16.5
 libpng:
 - '1.6'
+mimalloc:
+- 3.0.1
 numpy:
 - '1.22'
 openssl:
