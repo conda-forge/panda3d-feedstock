@@ -34,7 +34,7 @@ for %%l in (^
 :: Use vs2019 compiler (msvc_version 14.2)
 %PYTHON% makepanda/makepanda.py ^
     --wheel ^
-    --threads=2 ^
+    --threads=%CPU_COUNT% ^
     --outputdir=build ^
     --everything ^
     --verbose ^
