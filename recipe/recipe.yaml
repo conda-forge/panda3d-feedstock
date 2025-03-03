@@ -23,6 +23,14 @@ build:
       - if: osx
         then:
         - Frameworks/Cg.framework/Cg
+  files:
+    exclude:
+      - if: unix
+        then:
+        - lib/python*/site-packages/deploy_libs/**/*
+        - lib/python*/site-packages/direct/**/*
+        - lib/python*/site-packages/pandac/**/*
+        - **/__pycache__/**/*
 
 requirements:
   build:
