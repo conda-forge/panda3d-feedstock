@@ -25,11 +25,22 @@ build:
         - Frameworks/Cg.framework/Cg
   files:
     exclude:
-      - lib/python*/site-packages/deploy_libs/**/*
-      - lib/python*/site-packages/direct/**/*
-      - lib/python*/site-packages/panda3d_tools/**/*
-      - lib/python*/site-packages/pandac/**/*
-      - "**/*.pyc"
+      - if: unix
+        then:
+        - lib/python*/site-packages/deploy_libs/**/*
+        - lib/python*/site-packages/direct/**/*
+        - lib/python*/site-packages/panda3d_tools/**/*
+        - lib/python*/site-packages/pandac/**/*
+        - lib/python*/site-packages/panda3d/__pycache__/*.pyc
+        - share/panda3d/direct/**/__pycache__/*.pyc
+      - if: win
+        then:
+        - Lib/site-packages/deploy_libs/**/*
+        - Lib/site-packages/direct/**/*
+        - Lib/site-packages/panda3d_tools/**/*
+        - Lib/site-packages/pandac/**/*
+        - Lib/site-packages/panda3d/__pycache__/*.pyc
+        - Library/share/panda3d/direct/**/__pycache__/*.pyc
 
 requirements:
   build:
