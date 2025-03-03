@@ -3,30 +3,41 @@ set ADDITIONAL_OPTIONS=
 :: Add path for wanted dependencies
 for %%l in (^
     assimp ^
-    bullet ^
+    bullet ^^ 
     ffmpeg ^
+    fftw ^
+    fltk ^
     freetype ^
+    gtk3 ^
+    harfbuzz ^
     jpeg ^
+    mimalloc ^
+    ode ^
     openal ^
     openssl ^
     png ^
     python ^
+    swresample ^
+    swscale ^
     tiff ^
     vorbis ^
+    wx ^
     zlib) do (
     call set "ADDITIONAL_OPTIONS= --%%l-incdir=%LIBRARY_INC% %%ADDITIONAL_OPTIONS%%"
     call set "ADDITIONAL_OPTIONS= --%%l-libdir=%LIBRARY_LIB% %%ADDITIONAL_OPTIONS%%"
 )
 
-:: Special treatment for eigen
+:: Special treatment for eigen MAYBE OTHER FROM THE LIST ABOVE
 set ADDITIONAL_OPTIONS= --eigen-incdir %LIBRARY_INC%\eigen3 %ADDITIONAL_OPTIONS%
 
 :: Disable certain options
 for %%l in (^
-    nvidiacg ^
     egl ^
     gles ^
-    gles2) do (
+    gles2 ^
+    nvidiacg ^
+    opencv ^
+) do (
     call set "ADDITIONAL_OPTIONS=--no-%%l %%ADDITIONAL_OPTIONS%%"
 )
 
