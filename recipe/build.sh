@@ -79,7 +79,7 @@ rsync -a direct                      $PREFIX/share/panda3d
 rsync -a models                      $PREFIX/share/panda3d
 rsync -a pandac                      $PREFIX/share/panda3d
 rsync -a plugins                     $PREFIX/share/panda3d
-rsync -a samples                     $PREFIX/share/panda3d
+rsync -a ../samples                  $PREFIX/share/panda3d
 cp ReleaseNotes                      $PREFIX/share/panda3d
 cp LICENSE                           $PREFIX/share/panda3d
 
