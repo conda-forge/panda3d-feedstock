@@ -29,6 +29,7 @@ build:
         then:
         - lib/python*/site-packages/deploy_libs/**/*
         - lib/python*/site-packages/direct/**/*
+        - lib/python*/site-packages/panda3d_tools/**/*
         - lib/python*/site-packages/pandac/**/*
         - **/__pycache__/**/*
 
