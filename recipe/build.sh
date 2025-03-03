@@ -46,23 +46,24 @@ $PYTHON -m pip install panda3d*.whl -vv
 # Manual installation of other elements
 cd build
 
-# Install panda3d libs
+# Install /lib
 mkdir $PREFIX/lib || true
-cp /lib/*.*                   $PREFIX/lib
+cp /lib/*.*                          $PREFIX/lib
+cp lib/gdk-pixbuf-*/*/loaders.cache  $PREFIX/lib
 
-# Install etc
+# Install /etc
 # Etc that are created by installpanda.py and not yet manually handled
 # - etc/ld.so.conf.d/panda3d.conf
 mkdir $PREFIX/etc || true
 mkdir $PREFIX/etc/panda3d
 cp -r etc/*                   $PREFIX/etc/panda3d
 
-# Install headers
+# Install /include
 mkdir $PREFIX/include || true
 mkdir $PREFIX/include/panda3d
 cp -r include/*               $PREFIX/include/panda3d
 
-# Make share
+# Make /share
 # Shares that are created by installpanda.py and not yet manually handled
 # - share/application-registry/panda3d.applications
 # - share/applications/pview.desktop
