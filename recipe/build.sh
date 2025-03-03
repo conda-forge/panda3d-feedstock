@@ -40,33 +40,38 @@ $PYTHON makepanda/makepanda.py \
     --verbose \
     $ADDITIONAL_OPTIONS
 
-$PYTHON makepanda/installpanda.py \
-    --outputdir=build \
-    --destdir=$PREFIX \
-    --prefix=$PREFIX \
-    --verbose
+# Install wheel which install python, bin
+$PYTHON -m pip install panda3d*.whl -vv
 
-# # Install wheel which install python, bin
-# $PYTHON -m pip install panda3d*.whl -vv
+cd build
 
-# cd build
+# Install lib in sysroot-folder
+# Too brutal and wrong
+rsync -a lib                  $PREFIX
 
-# # Install lib in sysroot-folder
-# rsync -a lib                  $PREFIX
+# Make etc
+mkdir $PREFIX/etc || true
+mkdir $PREFIX/etc/panda3d
+cp -r etc/*                   $PREFIX/etc/panda3d
 
-# # Make etc 
-# mkdir $PREFIX/etc || true
-# mkdir $PREFIX/etc/panda3d
-# cp -r etc/*                   $PREFIX/etc/panda3d
+# Install headers
+mkdir $PREFIX/include || true
+mkdir $PREFIX/include/panda3d
+cp -r include/*               $PREFIX/include/panda3d
 
-# # Install headers
-# mkdir $PREFIX/include || true
-# mkdir $PREFIX/include/panda3d
-# cp -r include/*               $PREFIX/include/panda3d
+# Make share
+# # Shares that are created by installpanda.py and not yet manually handled
+# share/application-registry/panda3d.applications
+# share/applications/pview.desktop
+# share/mime/packages/panda3d.xml
+# share/mime-info/panda3d.keys
+# share/mime-info/panda3d.mime
 
-# # Make share
-# mkdir $PREFIX/share/panda3d
-# rsync -a models               $PREFIX/share/panda3d
-# rsync -a plugins              $PREFIX/share/panda3d
-# cp ReleaseNotes               $PREFIX/share/panda3d
-# cp LICENSE                    $PREFIX/share/panda3d
+mkdir $PREFIX/share/panda3d
+rsync -a direct               $PREFIX/share/panda3d
+rsync -a models               $PREFIX/share/panda3d
+rsync -a pandac               $PREFIX/share/panda3d
+rsync -a plugins              $PREFIX/share/panda3d
+rsync -a samples              $PREFIX/share/panda3d
+cp ReleaseNotes               $PREFIX/share/panda3d
+cp LICENSE                    $PREFIX/share/panda3d
