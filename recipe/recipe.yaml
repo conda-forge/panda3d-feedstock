@@ -28,13 +28,11 @@ build:
       - if: unix
         then:
         - lib/python*/site-packages/deploy_libs/**/*
-        - lib/python*/site-packages/direct/**/*
         - lib/python*/site-packages/panda3d_tools/**/*
         - lib/python*/site-packages/pandac/**/*
       - if: win
         then:
         - Lib/site-packages/deploy_libs/**/*
-        - Lib/site-packages/direct/**/*
         - Lib/site-packages/panda3d_tools/**/*
         - Lib/site-packages/pandac/**/*
 
@@ -151,6 +149,7 @@ tests:
   - python:
       imports:
         - panda3d
+        - direct
 
 about:
   homepage: https://www.panda3d.org/
