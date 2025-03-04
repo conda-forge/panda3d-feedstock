@@ -76,6 +76,8 @@ requirements:
     - tifffile
     - zlib
     - wxpython
+    # - fftw
+    # - gtk3
     # Packages to specify to panda3d not on win
     - if: unix
       then:
