@@ -1,15 +1,15 @@
-From d05c62221c0add635ad121cbba3c2fb9e5fd156b Mon Sep 17 00:00:00 2001
+From 23719395508c970f704c5a6827b9a4d5d611ef6c Mon Sep 17 00:00:00 2001
 From: Olivier Roussel <olivier.roussel@inria.fr>
 Date: Tue, 4 Mar 2025 18:05:20 +0100
 Subject: [PATCH] redirect 3rd party dir to conda & fix lib paths
 
 ---
- makepanda/makepanda.py     | 193 +++++++++++++++++++------------------
+ makepanda/makepanda.py     | 199 +++++++++++++++++++------------------
  makepanda/makepandacore.py |   2 +-
- 2 files changed, 98 insertions(+), 97 deletions(-)
+ 2 files changed, 101 insertions(+), 100 deletions(-)
 
 diff --git a/makepanda/makepanda.py b/makepanda/makepanda.py
-index 17699c3074..9ef9ae862f 100755
+index 17699c3074..fb1f95a074 100755
 --- a/makepanda/makepanda.py
 +++ b/makepanda/makepanda.py
 @@ -756,10 +756,10 @@ if (COMPILER == "MSVC"):
@@ -26,7 +26,7 @@ index 17699c3074..9ef9ae862f 100755
      LibName("WINSOCK", "wsock32.lib")
      LibName("WINSOCK2", "wsock32.lib")
      LibName("WINSOCK2", "ws2_32.lib")
-@@ -786,129 +786,129 @@ if (COMPILER == "MSVC"):
+@@ -786,144 +786,144 @@ if (COMPILER == "MSVC"):
      if (PkgSkip("DIRECTCAM")==0): LibName("DIRECTCAM", "quartz.lib")
      if (PkgSkip("DIRECTCAM")==0): LibName("DIRECTCAM", "odbc32.lib")
      if (PkgSkip("DIRECTCAM")==0): LibName("DIRECTCAM", "odbccp32.lib")
@@ -217,8 +217,9 @@ index 17699c3074..9ef9ae862f 100755
              DefSymbol("OPENAL", "AL_LIBTYPE_STATIC")
      if (PkgSkip("ODE")==0):
 -        LibName("ODE",      GetThirdpartyDir() + "ode/lib/ode_single.lib")
-+        LibName("ODE",      GetThirdpartyDir() + "lib/ode_single.lib")
-         DefSymbol("ODE",    "dSINGLE", "")
+-        DefSymbol("ODE",    "dSINGLE", "")
++        LibName("ODE",      GetThirdpartyDir() + "lib/ode_double.lib")
++        DefSymbol("ODE",    "dDOUBLE", "")
      if (PkgSkip("FMODEX")==0):
          if (GetTargetArch() == 'x64'):
 -            LibName("FMODEX",   GetThirdpartyDir() + "fmodex/lib/fmodex64_vc.lib")
@@ -240,8 +241,13 @@ index 17699c3074..9ef9ae862f 100755
          DefSymbol("WX",     "__WXMSW__", "")
          DefSymbol("WX",     "_UNICODE", "")
          DefSymbol("WX",     "UNICODE", "")
-@@ -919,11 +919,11 @@ if (COMPILER == "MSVC"):
-                 path = GetThirdpartyDir() + "vorbis/lib/{0}.lib".format(lib)
+     if (PkgSkip("VORBIS")==0):
+         for lib in ('ogg', 'vorbis', 'vorbisfile'):
+-            path = GetThirdpartyDir() + "vorbis/lib/lib{0}_static.lib".format(lib)
++            path = GetThirdpartyDir() + "lib/lib{0}_static.lib".format(lib)
+             if not os.path.isfile(path):
+-                path = GetThirdpartyDir() + "vorbis/lib/{0}.lib".format(lib)
++                path = GetThirdpartyDir() + "lib/{0}.lib".format(lib)
              LibName("VORBIS", path)
      if (PkgSkip("OPUS")==0):
 -        IncDirectory("OPUS", GetThirdpartyDir() + "opus/include/opus")
