@@ -1,0 +1,47 @@
+assimp:
+- 5.4.3
+bullet_cpp:
+- '3.25'
+c_compiler:
+- vs2019
+c_stdlib:
+- vs
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- vs2019
+ffmpeg:
+- '7'
+fftw:
+- '3'
+freetype:
+- '2'
+harfbuzz:
+- '10'
+libjpeg_turbo:
+- '3'
+libode:
+- 0.16.5
+libpng:
+- '1.6'
+mimalloc:
+- 3.0.1
+numpy:
+- '2'
+openssl:
+- '3'
+pin_run_as_build:
+  python:
+    min_pin: x.x
+    max_pin: x.x
+python:
+- 3.13.* *_cp313
+target_platform:
+- win-64
+zip_keys:
+- - python
+  - numpy
+zlib:
+- '1'
