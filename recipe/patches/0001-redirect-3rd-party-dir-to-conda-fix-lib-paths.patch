@@ -1,15 +1,15 @@
-From 60fe8851e3b0e430123b32b707d8654c965aead4 Mon Sep 17 00:00:00 2001
+From d05c62221c0add635ad121cbba3c2fb9e5fd156b Mon Sep 17 00:00:00 2001
 From: Olivier Roussel <olivier.roussel@inria.fr>
 Date: Tue, 4 Mar 2025 18:05:20 +0100
-Subject: [PATCH 1/2] redirect 3rd party dir to conda & fix lib paths
+Subject: [PATCH] redirect 3rd party dir to conda & fix lib paths
 
 ---
- makepanda/makepanda.py     | 190 ++++++++++++++++++-------------------
+ makepanda/makepanda.py     | 193 +++++++++++++++++++------------------
  makepanda/makepandacore.py |   2 +-
- 2 files changed, 96 insertions(+), 96 deletions(-)
+ 2 files changed, 98 insertions(+), 97 deletions(-)
 
 diff --git a/makepanda/makepanda.py b/makepanda/makepanda.py
-index 17699c3074..06cf41da5d 100755
+index 17699c3074..9ef9ae862f 100755
 --- a/makepanda/makepanda.py
 +++ b/makepanda/makepanda.py
 @@ -756,10 +756,10 @@ if (COMPILER == "MSVC"):
@@ -255,18 +255,21 @@ index 17699c3074..06cf41da5d 100755
              LibName("OPUS", path)
      for pkg in MAYAVERSIONS:
          if (PkgSkip(pkg)==0):
-@@ -977,12 +977,12 @@ if (COMPILER == "MSVC"):
+@@ -976,13 +976,14 @@ if (COMPILER == "MSVC"):
+             LibName("SPEEDTREE",  "glu32.lib")
          IncDirectory("SPEEDTREE", SDK["SPEEDTREE"] + "/Include")
      if (PkgSkip("BULLET")==0):
++        IncDirectory("BULLET", GetThirdpartyDir() + "include/bullet")
          suffix = '.lib'
 -        if GetTargetArch() == 'x64' and os.path.isfile(GetThirdpartyDir() + "bullet/lib/BulletCollision_x64.lib"):
-+        if GetTargetArch() == 'x64' and os.path.isfile(GetThirdpartyDir() + "lib/BulletCollision_x64.lib"):
-             suffix = '_x64.lib'
+-            suffix = '_x64.lib'
 -        LibName("BULLET", GetThirdpartyDir() + "bullet/lib/LinearMath" + suffix)
 -        LibName("BULLET", GetThirdpartyDir() + "bullet/lib/BulletCollision" + suffix)
 -        LibName("BULLET", GetThirdpartyDir() + "bullet/lib/BulletDynamics" + suffix)
 -        LibName("BULLET", GetThirdpartyDir() + "bullet/lib/BulletSoftBody" + suffix)
-+        LibName("BULLET", GetThirdpartyDir() + "/lib/LinearMath" + suffix)
++        if GetTargetArch() == 'x64' and os.path.isfile(GetThirdpartyDir() + "lib/BulletCollision-float64.lib"):
++            suffix = '-float64.lib'
++        LibName("BULLET", GetThirdpartyDir() + "lib/LinearMath" + suffix)
 +        LibName("BULLET", GetThirdpartyDir() + "lib/BulletCollision" + suffix)
 +        LibName("BULLET", GetThirdpartyDir() + "lib/BulletDynamics" + suffix)
 +        LibName("BULLET", GetThirdpartyDir() + "lib/BulletSoftBody" + suffix)
