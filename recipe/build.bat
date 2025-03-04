@@ -74,9 +74,6 @@ mkdir %LIBRARY_INC%\panda3d
 robocopy include %LIBRARY_INC%\panda3d /E >nul
 
 :: Make share
-mkdir %LIBRARY_PREFIX%\share\panda3d\direct
-robocopy direct %LIBRARY_PREFIX%\share\panda3d\direct /E >nul
-
 mkdir %LIBRARY_PREFIX%\share\panda3d\models
 robocopy models %LIBRARY_PREFIX%\share\panda3d\models /E >nul
 

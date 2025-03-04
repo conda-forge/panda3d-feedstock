@@ -82,7 +82,6 @@ cp -r include/*                      $PREFIX/include/panda3d
 # - share/mime-info/panda3d.keys
 # - share/mime-info/panda3d.mime
 mkdir $PREFIX/share/panda3d
-rsync -a direct                      $PREFIX/share/panda3d
 rsync -a models                      $PREFIX/share/panda3d
 rsync -a pandac                      $PREFIX/share/panda3d
 rsync -a plugins                     $PREFIX/share/panda3d
