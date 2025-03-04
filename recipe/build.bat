@@ -35,8 +35,7 @@ for %%l in (^
     gles ^
     gles2 ^
     nvidiacg ^
-    opencv ^
-) do (
+    opencv) do (
     call set "ADDITIONAL_OPTIONS=--no-%%l %%ADDITIONAL_OPTIONS%%"
 )
 
