@@ -5,7 +5,6 @@ for l in \
     assimp \
     bullet \
     ffmpeg \
-    fftw \
     fltk \
     freetype \
     harfbuzz \
