@@ -26,6 +26,7 @@ do
     export ADDITIONAL_OPTIONS=--$l-incdir\ $PREFIX/include\ $ADDITIONAL_OPTIONS
     export ADDITIONAL_OPTIONS=--$l-libdir\ $PREFIX/lib\ $ADDITIONAL_OPTIONS
 done
+# fftw, gtk3
 # Special treatment for eigen MAYBE OTHER FROM THE LIST ABOVE
 export ADDITIONAL_OPTIONS=--eigen-incdir\ $PREFIX/include/eigen3\ $ADDITIONAL_OPTIONS
 # Exclude unwanted dependencies
