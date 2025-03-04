@@ -5,7 +5,6 @@ for %%l in (^
     assimp ^
     bullet ^^ 
     ffmpeg ^
-    fftw ^
     fltk ^
     freetype ^
     harfbuzz ^
@@ -25,6 +24,7 @@ for %%l in (^
     call set "ADDITIONAL_OPTIONS= --%%l-incdir=%LIBRARY_INC% %%ADDITIONAL_OPTIONS%%"
     call set "ADDITIONAL_OPTIONS= --%%l-libdir=%LIBRARY_LIB% %%ADDITIONAL_OPTIONS%%"
 )
+:: fftw, gtk3
 
 :: Special treatment for eigen MAYBE OTHER FROM THE LIST ABOVE
 set ADDITIONAL_OPTIONS= --eigen-incdir %LIBRARY_INC%\eigen3 %ADDITIONAL_OPTIONS%
