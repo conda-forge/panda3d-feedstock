@@ -146,6 +146,11 @@ requirements:
     - ${{ pin_subpackage(name, upper_bound="x.x") }}
 
 tests:
+  - package_contents:
+      include:
+        - panda3d/panda.h
+      lib:
+        - ${{ "lib" if win }}panda
   - python:
       imports:
         - panda3d
