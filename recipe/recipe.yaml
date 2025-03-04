@@ -16,6 +16,11 @@ source:
       then:
        - patches/fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch
 
+    - if: win
+      then:
+        - patches/0001-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch
+        - patches/0002-use-non-static-mimalloc.patch
+
 build:
   number: ${{ build_num }}
   dynamic_linking:
