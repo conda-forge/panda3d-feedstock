@@ -8,7 +8,6 @@ for %%l in (^
     fftw ^
     fltk ^
     freetype ^
-    gtk3 ^
     harfbuzz ^
     jpeg ^
     mimalloc ^
