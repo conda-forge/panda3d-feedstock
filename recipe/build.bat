@@ -3,7 +3,7 @@ set ADDITIONAL_OPTIONS=
 :: Add path for wanted dependencies
 for %%l in (^
     assimp ^
-    bullet ^^ 
+    bullet ^ 
     ffmpeg ^
     fltk ^
     freetype ^
@@ -27,7 +27,7 @@ for %%l in (^
 :: fftw, gtk3
 
 :: Special treatment for eigen MAYBE OTHER FROM THE LIST ABOVE
-set ADDITIONAL_OPTIONS= --eigen-incdir %LIBRARY_INC%\eigen3 %ADDITIONAL_OPTIONS%
+set ADDITIONAL_OPTIONS= --eigen-incdir=%LIBRARY_INC%\eigen3 %ADDITIONAL_OPTIONS%
 
 :: Disable certain options
 for %%l in (^
