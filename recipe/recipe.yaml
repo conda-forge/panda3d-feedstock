@@ -65,7 +65,6 @@ requirements:
     - fftw
     - fltk
     - freetype
-    - gtk3
     - harfbuzz
     - libjpeg-turbo
     - libode
