@@ -1,0 +1,48 @@
+From bcf07d3b97c9446770f45ec590cbb34036343467 Mon Sep 17 00:00:00 2001
+From: Olivier Roussel <olivier.roussel@inria.fr>
+Date: Fri, 28 Feb 2025 10:41:51 +0100
+Subject: [PATCH] fix makepanda to use custom 3rd party libs for conda-build
+
+---
+ makepanda/makepanda.py     | 5 +++--
+ makepanda/makepandacore.py | 8 +++++++-
+ 2 files changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/makepanda/makepanda.py b/makepanda/makepanda.py
+index 17699c3074..1148a5e55a 100755
+--- a/makepanda/makepanda.py
++++ b/makepanda/makepanda.py
+@@ -3573,8 +3573,9 @@ ConditionalWriteFile(GetOutputDir()+'/include/ctl3d.h', '/* dummy file to make M
+ 
+ # Since Eigen is included by all sorts of core headers, as a convenience
+ # to C++ users on Win and Mac, we include it in the Panda include directory.
+-if not PkgSkip("EIGEN") and GetTarget() in ("windows", "darwin") and GetThirdpartyDir():
+-    CopyTree(GetOutputDir()+'/include/Eigen', GetThirdpartyDir()+'eigen/include/Eigen')
++# We disable this to force using Eigen from custom location (installed by conda)
++#if not PkgSkip("EIGEN") and GetTarget() in ("windows", "darwin") and GetThirdpartyDir():
++#    CopyTree(GetOutputDir()+'/include/Eigen', GetThirdpartyDir()+'eigen/include/Eigen')
+ 
+ ########################################################################
+ #
+diff --git a/makepanda/makepandacore.py b/makepanda/makepandacore.py
+index 74a4307a29..49db4212bc 100644
+--- a/makepanda/makepandacore.py
++++ b/makepanda/makepandacore.py
+@@ -2175,7 +2175,13 @@ def SdkLocatePython(prefer_thirdparty_python=False):
+ 
+     abiflags = getattr(sys, 'abiflags', '')
+ 
+-    if GetTarget() == 'windows':
++    isCondaBuild = 'PREFIX' in os.environ
++    if GetTarget() == 'windows' and isCondaBuild:
++        # If building under a conda-build env, then use the python provided by conda
++        SDK["PYTHON"] = os.environ['PREFIX']
++        SDK["PYTHONEXEC"] = os.environ['PREFIX'] + "/python.exe"
++        SDK["PYTHONVERSION"] = "python" + '{0[0]}.{0[1]}'.format(sys.version_info)
++    elif GetTarget() == 'windows' and not isCondaBuild:
+         sdkdir = GetThirdpartyBase() + "/win-python"
+ 
+         if sys.version_info >= (3, 0):
+-- 
+2.40.1.windows.1
+
