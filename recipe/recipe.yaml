@@ -1,0 +1,183 @@
+context:
+  name: panda3d
+  version: 1.10.15
+  build_num: 0
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/panda3d/panda3d/archive/v${{ version }}.tar.gz
+    sha256: dfe93123a73570377ef77c2a1b6ecff46c9b507750d8bedde07f9244cc1e741e
+
+    patches:
+    - if: win or osx
+      then:
+       - patches/fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch
+
+    - if: win
+      then:
+        - patches/0001-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch
+        - patches/0002-use-non-static-mimalloc.patch
+
+build:
+  number: ${{ build_num }}
+  dynamic_linking:
+    missing_dso_allowlist:
+      - if: osx
+        then:
+        - Frameworks/Cg.framework/Cg
+  files:
+    exclude:
+      - if: unix
+        then:
+        - lib/python*/site-packages/deploy_libs/**/*
+        - lib/python*/site-packages/panda3d_tools/**/*
+        - lib/python*/site-packages/pandac/**/*
+      - if: win
+        then:
+        - Lib/site-packages/deploy_libs/**/*
+        - Lib/site-packages/panda3d_tools/**/*
+        - Lib/site-packages/pandac/**/*
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler("cxx") }}
+    - if: unix
+      then:
+        - make
+        - rsync
+    - cmake
+    - pkg-config
+    - doxygen
+  host:
+    - libogg
+    - pillow
+    - pip
+    - python
+    - numpy
+    - setuptools
+    # Common packages to specify to panda3d
+    - assimp
+    - bullet-cpp
+    - eigen
+    - ffmpeg
+    - fftw
+    - fltk
+    - freetype
+    - harfbuzz
+    - libjpeg-turbo
+    - libode
+    - libpng
+    - libvorbis
+    - mimalloc
+    - openal-soft
+    - openssl
+    - tifffile
+    - zlib
+    - wxpython
+    # Packages to specify to panda3d not on win
+    - if: unix
+      then:
+        - bison
+        - opusfile
+    # Packages available on conda but incompatible with other recent packages pinning
+    # - openexr 2.5.5*
+    # - fftw
+    # - gtk3
+    # Linux GL packages
+    - if: linux
+      then:
+      - libegl-devel
+      - libgl-devel
+      - libxcb
+      - xcb-util
+      - xcb-util-image
+      - xcb-util-keysyms
+      - xcb-util-renderutil
+      - xcb-util-wm
+      - xorg-kbproto
+      - xorg-libice
+      - xorg-libsm
+      - xorg-libxdamage
+      - xorg-libxext
+      - xorg-libxxf86vm
+      - xorg-libx11
+      - xorg-xf86vidmodeproto
+      - xorg-xproto
+  run:
+    - python
+    - ${{ pin_compatible("numpy") }}
+    # Run dep
+    - ffmpeg
+    - openal-soft
+    - openssl
+    - tifffile
+    # Explicit dso
+    - libtiff
+    # ilmbase is still on an old version (2.5.5, as openexr)
+    # and its pinning is incompatible with other recent packages pinning
+    # - ilmbase
+    - libffi
+    - sqlite
+    - tk
+    - xz-tools
+    - if: unix
+      then:
+      - ncurses
+      - readline
+    # Linux GL packages
+    - if: linux
+      then:
+      - libxcb
+      - xcb-util
+      - xcb-util-image
+      - xcb-util-keysyms
+      - xcb-util-renderutil
+      - xcb-util-wm
+      - xorg-kbproto
+      - xorg-libice
+      - xorg-libsm
+      - xorg-libxdamage
+      - xorg-libxext
+      - xorg-libxxf86vm
+      - xorg-libx11
+      - xorg-xf86vidmodeproto
+      - xorg-xproto
+  run_exports:
+    - ${{ pin_subpackage(name, upper_bound="x.x") }}
+
+tests:
+  - package_contents:
+      include:
+        - panda3d/panda.h
+      lib:
+        - ${{ "lib" if win }}panda
+  - python:
+      imports:
+        - panda3d
+        - direct
+
+about:
+  homepage: https://www.panda3d.org/
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Panda3D is a game engine, a framework for 3D rendering and game development for Python and C++ programs
+  description: |
+    Panda3D is a game engine, a framework for 3D rendering 
+    and game development for Python and C++ programs. Panda3D 
+    is open-source and free for any purpose, including commercial 
+    ventures, thanks to its liberal license. To learn more about 
+    Panda3D's capabilities, visit the gallery and the feature list. 
+    To learn how to use Panda3D, check the documentation resources. 
+    If you get stuck, ask for help from our active community.
+  documentation: https://docs.panda3d.org/1.10/python/index
+  repository: https://github.com/panda3d/panda3d
+
+extra:
+  recipe-maintainers:
+    - olivier-roussel
+    - ymontmarin

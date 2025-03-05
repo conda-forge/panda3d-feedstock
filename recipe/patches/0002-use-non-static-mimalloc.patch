@@ -1,0 +1,25 @@
+From 417eeacad66cdb9d218651fefb8add9db6bb544a Mon Sep 17 00:00:00 2001
+From: Olivier Roussel <olivier.roussel@inria.fr>
+Date: Tue, 4 Mar 2025 18:06:21 +0100
+Subject: [PATCH 2/2] use non-static mimalloc
+
+---
+ makepanda/makepanda.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/makepanda/makepanda.py b/makepanda/makepanda.py
+index 06cf41da5d..3e2a92518f 100755
+--- a/makepanda/makepanda.py
++++ b/makepanda/makepanda.py
+@@ -786,7 +786,7 @@ if (COMPILER == "MSVC"):
+     if (PkgSkip("DIRECTCAM")==0): LibName("DIRECTCAM", "quartz.lib")
+     if (PkgSkip("DIRECTCAM")==0): LibName("DIRECTCAM", "odbc32.lib")
+     if (PkgSkip("DIRECTCAM")==0): LibName("DIRECTCAM", "odbccp32.lib")
+-    if (PkgSkip("MIMALLOC")==0): LibName("MIMALLOC", GetThirdpartyDir() + "lib/mimalloc-static.lib")
++    if (PkgSkip("MIMALLOC")==0): LibName("MIMALLOC", GetThirdpartyDir() + "lib/mimalloc.lib")
+     if (PkgSkip("OPENSSL")==0):
+         if os.path.isfile(GetThirdpartyDir() + "lib/libpandassl.lib"):
+             LibName("OPENSSL", GetThirdpartyDir() + "lib/libpandassl.lib")
+-- 
+2.40.1.windows.1
+
