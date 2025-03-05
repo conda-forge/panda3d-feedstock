@@ -24,19 +24,21 @@ for %%l in (^
     call set "ADDITIONAL_OPTIONS= --%%l-incdir=%LIBRARY_INC% %%ADDITIONAL_OPTIONS%%"
     call set "ADDITIONAL_OPTIONS= --%%l-libdir=%LIBRARY_LIB% %%ADDITIONAL_OPTIONS%%"
 )
-:: fftw, gtk3
-
-:: Special treatment for eigen MAYBE OTHER FROM THE LIST ABOVE
+:: Special treatment for eigen
 set ADDITIONAL_OPTIONS= --eigen-incdir=%LIBRARY_INC%\eigen3 %ADDITIONAL_OPTIONS%
-
-:: Disable certain options
+:: Exclude dependencies missing on conda
 for %%l in (^
-    egl ^
+    artoolkit ^
+    fcollada ^
+    fmodex ^
     gles ^
     gles2 ^
     nvidiacg ^
+    opencv ^
     opus ^
-    opencv) do (
+    rocket ^
+    squish ^
+    vrpn) do (
     call set "ADDITIONAL_OPTIONS=--no-%%l %%ADDITIONAL_OPTIONS%%"
 )
 
@@ -66,7 +68,7 @@ cd build
 robocopy bin %LIBRARY_BIN% /E >nul
 robocopy lib %LIBRARY_LIB% /E >nul
 
-:: Make etc 
+:: Install etc
 mkdir %LIBRARY_PREFIX%\etc\panda3d
 robocopy etc %LIBRARY_PREFIX%\etc\panda3d /E >nul
 
@@ -74,7 +76,7 @@ robocopy etc %LIBRARY_PREFIX%\etc\panda3d /E >nul
 mkdir %LIBRARY_INC%\panda3d
 robocopy include %LIBRARY_INC%\panda3d /E >nul
 
-:: Make share
+:: Install share
 mkdir %LIBRARY_PREFIX%\share\panda3d\models
 robocopy models %LIBRARY_PREFIX%\share\panda3d\models /E >nul
 

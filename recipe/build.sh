@@ -26,8 +26,7 @@ do
     export ADDITIONAL_OPTIONS=--$l-incdir\ $PREFIX/include\ $ADDITIONAL_OPTIONS
     export ADDITIONAL_OPTIONS=--$l-libdir\ $PREFIX/lib\ $ADDITIONAL_OPTIONS
 done
-# fftw, gtk3
-# Special treatment for eigen MAYBE OTHER FROM THE LIST ABOVE
+# Special treatment for eigen
 export ADDITIONAL_OPTIONS=--eigen-incdir\ $PREFIX/include/eigen3\ $ADDITIONAL_OPTIONS
 # Exclude unwanted dependencies
 for l in \
@@ -35,6 +34,20 @@ for l in \
     gles \
     gles2 \
     opencv
+do
+    export ADDITIONAL_OPTIONS=--no-$l\ $ADDITIONAL_OPTIONS
+done
+# Exclude dependencies missing on conda
+for l in \
+    artoolkit \
+    fcollada \
+    fftw \
+    fmodex \
+    gtk2 \
+    nvidiacg \
+    rocket \
+    squish \
+    vrpn
 do
     export ADDITIONAL_OPTIONS=--no-$l\ $ADDITIONAL_OPTIONS
 done
@@ -54,7 +67,7 @@ $PYTHON -m pip install panda3d*.whl -vv
 # Manual installation of other elements
 cd build
 
-# Install /lib
+# Install lib
 mkdir $PREFIX/lib || true
 for file in lib/*.*; do
   if [ -f "$file" ]; then
@@ -62,19 +75,19 @@ for file in lib/*.*; do
   fi
 done
 
-# Install /etc
+# Install etc
 # Etc that are created by installpanda.py and not yet manually handled
 # - etc/ld.so.conf.d/panda3d.conf
 mkdir $PREFIX/etc || true
 mkdir $PREFIX/etc/panda3d
 cp -r etc/*                          $PREFIX/etc/panda3d
 
-# Install /include
+# Install headers
 mkdir $PREFIX/include || true
 mkdir $PREFIX/include/panda3d
 cp -r include/*                      $PREFIX/include/panda3d
 
-# Make /share
+# Install share
 # Shares that are created by installpanda.py and not yet manually handled
 # - share/application-registry/panda3d.applications
 # - share/applications/pview.desktop

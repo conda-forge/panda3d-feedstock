@@ -79,15 +79,15 @@ requirements:
     - tifffile
     - zlib
     - wxpython
-    # - fftw
-    # - gtk3
     # Packages to specify to panda3d not on win
     - if: unix
       then:
         - bison
         - opusfile
-    # openexr v2.5.5 pinning is incompatible with other recent packages pinning
+    # Packages available on conda but incompatible with other recent packages pinning
     # - openexr 2.5.5*
+    # - fftw
+    # - gtk3
     # Linux GL packages
     - if: linux
       then:
