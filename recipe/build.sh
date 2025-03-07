@@ -58,25 +58,18 @@ fi
 
 # Debugging
 echo "-------------------------------"
-echo $build_platform
-echo $target_platform
-echo $BUILD_PREFIX
-echo $PREFIX
-echo $PYTHON
-which $PYTHON
-which $PREFIX/bin/python
-which $BUILD_PREFIX/bin/python
+cat "makepanda/makepandacore.py"
 file -b $PYTHON
-file -b $PREFIX/bin/python
-file -b $BUILD_PREFIX/bin/python
-file -b $PREFIX/../build_env/bin/python
+# file -b $PREFIX/bin/python
+# file -b $BUILD_PREFIX/bin/python
+# file -b $PREFIX/../build_env/bin/python
 
 # $PREFIX/../build_env/bin/python -c "import sysconfig, pprint; pprint.pprint(sysconfig.get_config_vars())"
-$PREFIX/../build_env/bin/python -c "import platform;print(platform.machine())"
+$PYTHON -c "import platform;print(platform.machine())"
 echo "-------------------------------"
 
 # Build panda using special panda3d tool
-$PREFIX/../build_env/bin/python makepanda/makepanda.py \
+$PYTHON makepanda/makepanda.py \
     --wheel \
     --threads=${CPU_COUNT} \
     --outputdir=build \
@@ -85,7 +78,7 @@ $PREFIX/../build_env/bin/python makepanda/makepanda.py \
     $ADDITIONAL_OPTIONS
 
 # Install wheel which install python site-package and binaries
-$PREFIX/bin/python -m pip install panda3d*.whl -vv
+$PYTHON -m pip install panda3d*.whl -vv
 
 # Manual installation of other elements
 cd build
