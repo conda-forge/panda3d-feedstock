@@ -1,14 +1,14 @@
-From 4eccf890ee6a84fad85bc917fbc5dca1b3b697bd Mon Sep 17 00:00:00 2001
+From f211a7287538e9e1d81e9f112a4f1702cea29397 Mon Sep 17 00:00:00 2001
 From: Olivier Roussel <olivier.roussel@inria.fr>
 Date: Fri, 7 Mar 2025 17:22:45 +0100
 Subject: [PATCH] force x86_64 host arch detection
 
 ---
- makepanda/makepandacore.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ makepanda/makepandacore.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/makepanda/makepandacore.py b/makepanda/makepandacore.py
-index 74a4307a29..151285c49e 100644
+index 74a4307a29..2c8d06d694 100644
 --- a/makepanda/makepandacore.py
 +++ b/makepanda/makepandacore.py
 @@ -337,7 +337,7 @@ def GetHostArch():
@@ -20,6 +20,15 @@ index 74a4307a29..151285c49e 100644
      target = GetTarget()
      if target == 'windows':
          return 'x64' if host_64 else 'x86'
+@@ -483,7 +483,7 @@ def GetTargetArch():
+ 
+ def CrossCompiling():
+     """Returns True if we're cross-compiling."""
+-    return GetTarget() != GetHost()
++    return True
+ 
+ def GetCC():
+     if TARGET in ('darwin', 'freebsd', 'android'):
 -- 
 2.34.1
 

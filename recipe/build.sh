@@ -56,18 +56,6 @@ if [[ $target_platform == "osx-arm64" ]]; then
     export ADDITIONAL_OPTIONS=--arch\ arm64\ $ADDITIONAL_OPTIONS
 fi
 
-# Debugging
-echo "-------------------------------"
-cat "makepanda/makepandacore.py"
-file -b $PYTHON
-# file -b $PREFIX/bin/python
-# file -b $BUILD_PREFIX/bin/python
-# file -b $PREFIX/../build_env/bin/python
-
-# $PREFIX/../build_env/bin/python -c "import sysconfig, pprint; pprint.pprint(sysconfig.get_config_vars())"
-$PYTHON -c "import platform;print(platform.machine())"
-echo "-------------------------------"
-
 # Build panda using special panda3d tool
 $PYTHON makepanda/makepanda.py \
     --wheel \
