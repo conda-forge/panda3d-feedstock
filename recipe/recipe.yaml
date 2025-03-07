@@ -14,7 +14,7 @@ source:
     patches:
     - if: osx and arm64
       then:
-        - patches/force-x86_64-host-arch-detection.patch
+        - patches/0001-force-x86_64-host-arch-detection.patch
 
     - if: win or osx
       then:

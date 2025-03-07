@@ -1,0 +1,43 @@
+From 9b3a2ee8bfe7563eebd465a35d16e01b0d7b0426 Mon Sep 17 00:00:00 2001
+From: Olivier Roussel <olivier.roussel@inria.fr>
+Date: Fri, 7 Mar 2025 17:22:45 +0100
+Subject: [PATCH] force x86_64 host arch detection
+
+---
+ makepanda/makepandacore.py | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/makepanda/makepandacore.py b/makepanda/makepandacore.py
+index 74a4307a29..e0c2584237 100644
+--- a/makepanda/makepandacore.py
++++ b/makepanda/makepandacore.py
+@@ -28,7 +28,7 @@ MAINTHREAD = threading.current_thread()
+ OUTPUTDIR = "built"
+ CUSTOM_OUTPUTDIR = False
+ THIRDPARTYBASE = None
+-THIRDPARTYDIR = None
++THIRDPARTYDIR = os.environ['PREFIX'] + '/'
+ OPTIMIZE = "3"
+ VERBOSE = False
+ LINK_ALL_STATIC = False
+@@ -337,7 +337,7 @@ def GetHostArch():
+     """Returns the architecture we're compiling on.
+     Its value is also platform-dependent, as different platforms
+     have different architecture naming."""
+-
++    return 'x86_64' # when cross-compiling, conda python is faking the target environment, so platform.machine() would returns an incorrect host arch
+     target = GetTarget()
+     if target == 'windows':
+         return 'x64' if host_64 else 'x86'
+@@ -483,7 +483,7 @@ def GetTargetArch():
+ 
+ def CrossCompiling():
+     """Returns True if we're cross-compiling."""
+-    return GetTarget() != GetHost()
++    return True
+ 
+ def GetCC():
+     if TARGET in ('darwin', 'freebsd', 'android'):
+-- 
+2.34.1
+
