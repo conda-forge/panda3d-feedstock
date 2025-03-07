@@ -12,6 +12,10 @@ source:
     sha256: dfe93123a73570377ef77c2a1b6ecff46c9b507750d8bedde07f9244cc1e741e
 
     patches:
+    - if: osx and arm64
+      then:
+        - patches/force-x86_64-host-arch-detection.patch
+
     - if: win or osx
       then:
        - patches/fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch
