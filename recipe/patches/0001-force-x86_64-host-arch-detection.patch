@@ -1,14 +1,14 @@
-From 9b3a2ee8bfe7563eebd465a35d16e01b0d7b0426 Mon Sep 17 00:00:00 2001
+From 0578562f08bedfd03ed1a9d24fe6dd423e146582 Mon Sep 17 00:00:00 2001
 From: Olivier Roussel <olivier.roussel@inria.fr>
 Date: Fri, 7 Mar 2025 17:22:45 +0100
 Subject: [PATCH] force x86_64 host arch detection
 
 ---
- makepanda/makepandacore.py | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ makepanda/makepandacore.py | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/makepanda/makepandacore.py b/makepanda/makepandacore.py
-index 74a4307a29..e0c2584237 100644
+index 74a4307a29..a0f7518775 100644
 --- a/makepanda/makepandacore.py
 +++ b/makepanda/makepandacore.py
 @@ -28,7 +28,7 @@ MAINTHREAD = threading.current_thread()
@@ -38,6 +38,15 @@ index 74a4307a29..e0c2584237 100644
  
  def GetCC():
      if TARGET in ('darwin', 'freebsd', 'android'):
+@@ -2231,7 +2231,7 @@ def SdkLocatePython(prefer_thirdparty_python=False):
+             Warn("running makepanda with Python %s, but building Panda3D with Python %s." % (running_ver, ver))
+ 
+     elif CrossCompiling() or (prefer_thirdparty_python and os.path.isdir(os.path.join(GetThirdpartyDir(), "python"))):
+-        tp_python = os.path.join(GetThirdpartyDir(), "python")
++        tp_python = os.path(GetThirdpartyDir())
+ 
+         if GetTarget() == 'darwin':
+             py_libs = glob.glob(tp_python + "/lib/libpython[0-9].[0-9].dylib") + \
 -- 
 2.34.1
 
