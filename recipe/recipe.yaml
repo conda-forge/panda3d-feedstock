@@ -53,6 +53,11 @@ requirements:
     - cmake
     - pkg-config
     - doxygen
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - numpy
   host:
     - libogg
     - pillow
