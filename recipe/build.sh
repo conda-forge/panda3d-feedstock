@@ -60,8 +60,15 @@ fi
 echo "-------------------------------"
 echo $build_platform
 echo $target_platform
-$PYTHON -c "import sysconfig, pprint; pprint.pprint(sysconfig.get_config_vars())"
-$PYTHON -c "import platform;print(platform.machine())"
+echo $PREFIX
+echo $PYTHON
+which $PYTHON
+which $PREFIX/bin/python
+$PYTHON --version
+$PREFIX/bin/python --version
+
+$PREFIX/bin/python -c "import sysconfig, pprint; pprint.pprint(sysconfig.get_config_vars())"
+$PREFIX/bin/python -c "import platform;print(platform.machine())"
 echo "-------------------------------"
 
 # Build panda using special panda3d tool
