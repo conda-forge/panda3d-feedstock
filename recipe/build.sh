@@ -66,11 +66,12 @@ echo $PYTHON
 which $PYTHON
 which $PREFIX/bin/python
 which $BUILD_PREFIX/bin/python
-$PYTHON --version
-$PREFIX/bin/python --version
-$BUILD_PREFIX/bin/python --version
+file -b $PYTHON
+file -b $PREFIX/bin/python
+file -b $BUILD_PREFIX/bin/python
+file -b $PREFIX/../build_env/bin/python
 
-$PREFIX/../build_env/bin/python -c "import sysconfig, pprint; pprint.pprint(sysconfig.get_config_vars())"
+# $PREFIX/../build_env/bin/python -c "import sysconfig, pprint; pprint.pprint(sysconfig.get_config_vars())"
 $PREFIX/../build_env/bin/python -c "import platform;print(platform.machine())"
 echo "-------------------------------"
 
