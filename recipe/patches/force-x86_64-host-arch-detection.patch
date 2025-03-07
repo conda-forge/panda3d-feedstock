@@ -1,4 +1,4 @@
-From 2e61049b4ba5f63eed6176f22625e9d777d00824 Mon Sep 17 00:00:00 2001
+From 4eccf890ee6a84fad85bc917fbc5dca1b3b697bd Mon Sep 17 00:00:00 2001
 From: Olivier Roussel <olivier.roussel@inria.fr>
 Date: Fri, 7 Mar 2025 17:22:45 +0100
 Subject: [PATCH] force x86_64 host arch detection
@@ -8,18 +8,18 @@ Subject: [PATCH] force x86_64 host arch detection
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/makepanda/makepandacore.py b/makepanda/makepandacore.py
-index 74a4307a29..3753fe0d56 100644
+index 74a4307a29..151285c49e 100644
 --- a/makepanda/makepandacore.py
 +++ b/makepanda/makepandacore.py
-@@ -356,7 +356,7 @@ def SetTarget(target, arch=None):
-     global TOOLCHAIN_PREFIX
- 
-     host = GetHost()
--    host_arch = GetHostArch()
-+    host_arch = 'x86_64' # when cross-compiling, conda python is faking the target environment, so platform.machine() would returns an incorrect host arch
-     if target is None:
-         target = host
-     else:
+@@ -337,7 +337,7 @@ def GetHostArch():
+     """Returns the architecture we're compiling on.
+     Its value is also platform-dependent, as different platforms
+     have different architecture naming."""
+-
++    return 'x86_64' # when cross-compiling, conda python is faking the target environment, so platform.machine() would returns an incorrect host arch
+     target = GetTarget()
+     if target == 'windows':
+         return 'x64' if host_64 else 'x86'
 -- 
 2.34.1
 
