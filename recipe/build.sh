@@ -52,6 +52,10 @@ do
     export ADDITIONAL_OPTIONS=--no-$l\ $ADDITIONAL_OPTIONS
 done
 
+if [[ $target_platform == "osx-arm64" ]]; then
+    export ADDITIONAL_OPTIONS=--arch\ arm64\ $ADDITIONAL_OPTIONS
+fi
+
 # Build panda using special panda3d tool
 $PYTHON makepanda/makepanda.py \
     --wheel \
