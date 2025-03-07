@@ -58,6 +58,9 @@ requirements:
         - python
         - cross-python_${{ target_platform }}
         - numpy
+        - if: unix
+          then:
+            - bison
   host:
     - libogg
     - pillow
