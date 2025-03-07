@@ -7,6 +7,7 @@ conda_build:
 conda_build_tool: rattler-build
 test: native_and_emulated
 azure:
+  store_build_artifacts: True
   settings_win:
     variables:
       CONDA_BLD_PATH: "C:\\bld"
