@@ -61,7 +61,7 @@ fi
 # 2. We must also disable parallel compilation with makepanda
 # as it tries to call some unfinished executables otherwise
 if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
-    export PATH=$SRC_DIR/build/bin:$PATH
+    export PATH=`pwd`/build/bin:$PATH
     echo $PATH
 else
     export ADDITIONAL_OPTIONS=--threads=${CPU_COUNT}\ $ADDITIONAL_OPTIONS
