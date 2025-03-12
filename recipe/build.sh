@@ -56,18 +56,20 @@ if [[ $target_platform == "osx-arm64" ]]; then
     export ADDITIONAL_OPTIONS=--arch\ arm64\ $ADDITIONAL_OPTIONS
 fi
 
-# When cross-compiling, makepanda cannot find intermediate 
+# 1. When cross-compiling, makepanda cannot find intermediate 
 # build tools such as interrogate executable
+# 2. We must also disable parallel compilation with makepanda
+# as it tries to call some unfinished executables otherwise
 if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
-    export PATH=`pwd`/build/bin:$PATH
-    echo "============================"
+    export PATH=$SRC_DIR/build/bin:$PATH
     echo $PATH
+else
+    export ADDITIONAL_OPTIONS=--threads=${CPU_COUNT}\ $ADDITIONAL_OPTIONS
 fi
 
 # Build panda using special panda3d tool
 $PYTHON makepanda/makepanda.py \
     --wheel \
-    --threads=${CPU_COUNT} \
     --outputdir=build \
     --everything \
     --verbose \
