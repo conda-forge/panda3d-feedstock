@@ -59,7 +59,9 @@ fi
 # When cross-compiling, makepanda cannot find intermediate 
 # build tools such as interrogate executable
 if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
-    export PATH=$SRC_DIR/build/bin:$PATH
+    export PATH=`pwd`/build/bin:$PATH
+    echo "============================"
+    echo $PATH
 fi
 
 # Build panda using special panda3d tool
