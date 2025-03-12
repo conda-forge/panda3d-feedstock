@@ -56,6 +56,12 @@ if [[ $target_platform == "osx-arm64" ]]; then
     export ADDITIONAL_OPTIONS=--arch\ arm64\ $ADDITIONAL_OPTIONS
 fi
 
+# When cross-compiling, makepanda cannot find intermediate 
+# build tools such as interrogate executable
+if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
+    export PATH=$SRC_DIR/build/bin:$PATH
+fi
+
 # Build panda using special panda3d tool
 $PYTHON makepanda/makepanda.py \
     --wheel \
