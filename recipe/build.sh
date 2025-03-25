@@ -54,18 +54,34 @@ done
 
 # Build panda using special panda3d tool
 $PYTHON makepanda/makepanda.py \
-    --wheel \
     --threads=${CPU_COUNT} \
     --outputdir=build \
     --everything \
     --verbose \
     $ADDITIONAL_OPTIONS
 
-# Install wheel which install python site-package and binaries
-$PYTHON -m pip install panda3d*.whl -vv
-
 # Manual installation of other elements
 cd build
+
+# Install site-packages
+cp -r panda3d/ $SP_DIR
+cp -r direct/ $SP_DIR
+
+# Fix install-name on darwin
+if [[ $target_platform == "osx-*" ]]; then
+  for file in lib/*.dylib bin/*; do
+    otool -L $file | tail -n +2 | tr -d '\t' | cut -d ' ' -f 1 > tmp_otool.txt
+    while read linked; do
+      if [[ $linked == "@loader_path/../lib"* ]]; then
+        new_linked=$(echo "$linked" | sed "s/@loader_path\/..\/lib/@rpath/")
+        install_name_tool $linked $new_linked $file
+      fi
+    done < tmp_otool.txt
+  done
+fi
+
+# Install bin
+cp -r bin/* $PREFIX/bin
 
 # Install lib
 mkdir $PREFIX/lib || true
