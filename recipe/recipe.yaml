@@ -1,7 +1,7 @@
 context:
   name: panda3d
   version: 1.10.15
-  build_num: 0
+  build_num: 1
 
 package:
   name: ${{ name }}
@@ -20,6 +20,9 @@ source:
       then:
         - patches/0001-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch
         - patches/0002-use-non-static-mimalloc.patch
+
+    # fix the ressource model directory to installed on in <prefix>/share/panda3d
+    - fix-model-path-in-config.prc-template.patch
 
 build:
   number: ${{ build_num }}
@@ -160,6 +163,17 @@ tests:
       imports:
         - panda3d
         - direct
+  - files:
+      recipe:
+        - test/
+    requirements:
+      run:
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - ninja
+        - eigen
+    script: run_test
 
 about:
   homepage: https://www.panda3d.org/
