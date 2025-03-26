@@ -11,8 +11,9 @@ find_package(Eigen3 REQUIRED CONFIG)
 
 add_executable(TestExe test.cpp)
 target_link_libraries(TestExe PUBLIC 
-  Eigen3::Eigen 
-  panda3d::panda 
+  Eigen3::Eigen
+  panda3d::panda
+  panda3d::pandaexpress
   panda3d::p3dtoolconfig
   panda3d::p3dtool
   panda3d::p3framework)
