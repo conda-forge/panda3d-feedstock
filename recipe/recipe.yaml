@@ -12,34 +12,34 @@ source:
     sha256: dfe93123a73570377ef77c2a1b6ecff46c9b507750d8bedde07f9244cc1e741e
 
     patches:
-    - if: win or osx
-      then:
-       - patches/fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch
+      - if: win or osx
+        then:
+          - patches/fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch
 
-    - if: win
-      then:
-        - patches/0001-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch
-        - patches/0002-use-non-static-mimalloc.patch
+      - if: win
+        then:
+          - patches/0001-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch
+          - patches/0002-use-non-static-mimalloc.patch
 
 build:
-  number: ${{ build_num }}
+  number: 1
   dynamic_linking:
     missing_dso_allowlist:
       - if: osx
         then:
-        - Frameworks/Cg.framework/Cg
+          - Frameworks/Cg.framework/Cg
   files:
     exclude:
       - if: unix
         then:
-        - lib/python*/site-packages/deploy_libs/**/*
-        - lib/python*/site-packages/panda3d_tools/**/*
-        - lib/python*/site-packages/pandac/**/*
+          - lib/python*/site-packages/deploy_libs/**/*
+          - lib/python*/site-packages/panda3d_tools/**/*
+          - lib/python*/site-packages/pandac/**/*
       - if: win
         then:
-        - Lib/site-packages/deploy_libs/**/*
-        - Lib/site-packages/panda3d_tools/**/*
-        - Lib/site-packages/pandac/**/*
+          - Lib/site-packages/deploy_libs/**/*
+          - Lib/site-packages/panda3d_tools/**/*
+          - Lib/site-packages/pandac/**/*
 
 requirements:
   build:
@@ -91,23 +91,23 @@ requirements:
     # Linux GL packages
     - if: linux
       then:
-      - libegl-devel
-      - libgl-devel
-      - libxcb
-      - xcb-util
-      - xcb-util-image
-      - xcb-util-keysyms
-      - xcb-util-renderutil
-      - xcb-util-wm
-      - xorg-kbproto
-      - xorg-libice
-      - xorg-libsm
-      - xorg-libxdamage
-      - xorg-libxext
-      - xorg-libxxf86vm
-      - xorg-libx11
-      - xorg-xf86vidmodeproto
-      - xorg-xproto
+        - libegl-devel
+        - libgl-devel
+        - libxcb
+        - xcb-util
+        - xcb-util-image
+        - xcb-util-keysyms
+        - xcb-util-renderutil
+        - xcb-util-wm
+        - xorg-kbproto
+        - xorg-libice
+        - xorg-libsm
+        - xorg-libxdamage
+        - xorg-libxext
+        - xorg-libxxf86vm
+        - xorg-libx11
+        - xorg-xf86vidmodeproto
+        - xorg-xproto
   run:
     - python
     - ${{ pin_compatible("numpy") }}
@@ -127,26 +127,26 @@ requirements:
     - xz-tools
     - if: unix
       then:
-      - ncurses
-      - readline
+        - ncurses
+        - readline
     # Linux GL packages
     - if: linux
       then:
-      - libxcb
-      - xcb-util
-      - xcb-util-image
-      - xcb-util-keysyms
-      - xcb-util-renderutil
-      - xcb-util-wm
-      - xorg-kbproto
-      - xorg-libice
-      - xorg-libsm
-      - xorg-libxdamage
-      - xorg-libxext
-      - xorg-libxxf86vm
-      - xorg-libx11
-      - xorg-xf86vidmodeproto
-      - xorg-xproto
+        - libxcb
+        - xcb-util
+        - xcb-util-image
+        - xcb-util-keysyms
+        - xcb-util-renderutil
+        - xcb-util-wm
+        - xorg-kbproto
+        - xorg-libice
+        - xorg-libsm
+        - xorg-libxdamage
+        - xorg-libxext
+        - xorg-libxxf86vm
+        - xorg-libx11
+        - xorg-xf86vidmodeproto
+        - xorg-xproto
   run_exports:
     - ${{ pin_subpackage(name, upper_bound="x.x") }}
 
