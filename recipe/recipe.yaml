@@ -38,11 +38,14 @@ build:
         - lib/python*/site-packages/deploy_libs/**/*
         - lib/python*/site-packages/panda3d_tools/**/*
         - lib/python*/site-packages/pandac/**/*
+        - lib/python*/site-packages/**/__pycache__
       - if: win
         then:
         - Lib/site-packages/deploy_libs/**/*
         - Lib/site-packages/panda3d_tools/**/*
         - Lib/site-packages/pandac/**/*
+        - Lib/site-packages/**/__pycache__
+        - Library/**/*.pdb
 
 requirements:
   build:
