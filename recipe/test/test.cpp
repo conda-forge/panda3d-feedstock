@@ -25,6 +25,14 @@ int main(int argc, char *argv[]) {
   } else {
     nout << "Could not load the window!\n";
   }
+
+  // Check linkage errors on win32 when linking with clang-cl this executable
+  // using a panda3d conda package built with MSVC
+  GraphicsOutput *windowOutput = window->get_graphics_output();
+  GraphicsStateGuardian* gsg = windowOutput->get_gsg();
+  // this call would break linkage due to different symbols for ConfigFlags::_global_modified
+  auto dummy2 = gsg->get_copy_texture_inverted();
+
   // Close the framework
   framework.close_framework();
   return (0);

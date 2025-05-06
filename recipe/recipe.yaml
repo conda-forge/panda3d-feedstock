@@ -24,6 +24,13 @@ source:
     # fix the ressource model directory to installed on in <prefix>/share/panda3d
     - fix-model-path-in-config.prc-template.patch
 
+    # When compiling on win32, different atomic types are used if using MSVC or clang-cl compilers.
+    # This causes linking errors due to different symbols in lib files when trying to link
+    # with this panda3d conda package as a 3rd party library with clang-cl, whereas the conda
+    # package has been built with MSVC. This fix forces clang-cl to use win32 native atomic types
+    # as it is done with MSVC.
+    - patches/Use-Win32-native-calls-for-atomic-also-with-clang-cl.patch
+
 build:
   number: ${{ build_num }}
   dynamic_linking:
