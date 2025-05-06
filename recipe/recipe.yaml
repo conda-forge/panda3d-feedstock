@@ -22,7 +22,7 @@ source:
         - patches/0002-use-non-static-mimalloc.patch
 
     # fix the ressource model directory to installed on in <prefix>/share/panda3d
-    - fix-model-path-in-config.prc-template.patch
+    - patches/fix-model-path-in-config.prc-template.patch
 
     # When compiling on win32, different atomic types are used if using MSVC or clang-cl compilers.
     # This causes linking errors due to different symbols in lib files when trying to link
