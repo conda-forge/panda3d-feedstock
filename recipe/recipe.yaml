@@ -12,14 +12,14 @@ source:
     sha256: dfe93123a73570377ef77c2a1b6ecff46c9b507750d8bedde07f9244cc1e741e
 
     patches:
-      - if: win or osx
-        then:
-          - patches/fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch
+    - if: win or osx
+      then:
+        - patches/fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch
 
-      - if: win
-        then:
-          - patches/0001-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch
-          - patches/0002-use-non-static-mimalloc.patch
+    - if: win
+      then:
+        - patches/0001-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch
+        - patches/0002-use-non-static-mimalloc.patch
 
     # fix the ressource model directory to installed on in <prefix>/share/panda3d
     - fix-model-path-in-config.prc-template.patch
