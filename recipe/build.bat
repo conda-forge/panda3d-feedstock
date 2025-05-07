@@ -45,7 +45,6 @@ for %%l in (^
 :: Build panda using special panda3d tool
 :: Use vs2019 compiler (msvc_version 14.2)
 %PYTHON% makepanda/makepanda.py ^
-    --wheel ^
     --threads=%CPU_COUNT% ^
     --outputdir=build ^
     --everything ^
@@ -55,14 +54,13 @@ for %%l in (^
     %ADDITIONAL_OPTIONS%
 if errorlevel 1 exit 1
 
-:: Install wheel which install python
-:: On Windows the wildcard must be unfold manually
-for %%f in (panda3d*.whl) do (
-    %PYTHON% -m pip install %%f -vv
-)
-if errorlevel 1 exit 1
-
 cd build
+
+:: Install site-packages
+mkdir %SP_DIR%\panda3d
+robocopy panda3d %SP_DIR%\panda3d /E >nul
+mkdir %SP_DIR%\direct
+robocopy direct %SP_DIR%\direct /E >nul
 
 :: Install bin & lib in sysroot-folder
 robocopy bin %LIBRARY_BIN% /E >nul

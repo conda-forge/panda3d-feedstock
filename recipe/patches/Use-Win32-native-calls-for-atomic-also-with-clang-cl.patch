@@ -1,0 +1,24 @@
+From d79ff54f4d8a3526fcd85219a358dfecd1c49153 Mon Sep 17 00:00:00 2001
+From: Olivier Roussel <olivier.roussel@inria.fr>
+Date: Mon, 5 May 2025 18:02:49 +0200
+Subject: [PATCH] Use Win32 native calls for atomic also with clang-cl
+
+---
+ dtool/src/dtoolbase/atomicAdjust.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dtool/src/dtoolbase/atomicAdjust.h b/dtool/src/dtoolbase/atomicAdjust.h
+index 804224e5c3..014c4c4445 100644
+--- a/dtool/src/dtoolbase/atomicAdjust.h
++++ b/dtool/src/dtoolbase/atomicAdjust.h
+@@ -30,7 +30,7 @@ struct AtomicAdjust {
+ #include "atomicAdjustDummyImpl.h"
+ typedef AtomicAdjustDummyImpl AtomicAdjust;
+ 
+-#elif (defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 7))) || (defined(__clang__) && (__clang_major__ >= 3))
++#elif (defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 7))) || (defined(__clang__) && (__clang_major__ >= 3) && !defined(WIN32_VC) )
+ // GCC 4.7 and above has built-in __atomic functions for atomic operations.
+ // Clang 3.0 and above also supports them.
+ 
+
+

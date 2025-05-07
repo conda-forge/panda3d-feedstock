@@ -20,6 +20,5 @@ index 06cf41da5d..3e2a92518f 100755
      if (PkgSkip("OPENSSL")==0):
          if os.path.isfile(GetThirdpartyDir() + "lib/libpandassl.lib"):
              LibName("OPENSSL", GetThirdpartyDir() + "lib/libpandassl.lib")
--- 
-2.40.1.windows.1
+
 
