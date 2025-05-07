@@ -43,6 +43,5 @@ index 74a4307a29..49db4212bc 100644
          sdkdir = GetThirdpartyBase() + "/win-python"
  
          if sys.version_info >= (3, 0):
--- 
-2.40.1.windows.1
+
 

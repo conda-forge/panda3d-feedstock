@@ -20,6 +20,5 @@ index 804224e5c3..014c4c4445 100644
  // GCC 4.7 and above has built-in __atomic functions for atomic operations.
  // Clang 3.0 and above also supports them.
  
--- 
-2.34.1
+
 
