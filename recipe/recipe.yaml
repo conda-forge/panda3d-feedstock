@@ -12,27 +12,27 @@ source:
     sha256: dfe93123a73570377ef77c2a1b6ecff46c9b507750d8bedde07f9244cc1e741e
 
     patches:
-    - if: win or osx
-      then:
-        - patches/fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch
+      - if: win or osx
+        then:
+          - patches/fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch
 
-    - if: win
-      then:
-        - patches/0001-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch
-        - patches/0002-use-non-static-mimalloc.patch
+      - if: win
+        then:
+          - patches/0001-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch
+          - patches/0002-use-non-static-mimalloc.patch
 
     # fix the ressource model directory to installed on in <prefix>/share/panda3d
-    - patches/fix-model-path-in-config.prc-template.patch
+      - patches/fix-model-path-in-config.prc-template.patch
 
     # When compiling on win32, different atomic types are used if using MSVC or clang-cl compilers.
     # This causes linking errors due to different symbols in lib files when trying to link
     # with this panda3d conda package as a 3rd party library with clang-cl, whereas the conda
     # package has been built with MSVC. This fix forces clang-cl to use win32 native atomic types
     # as it is done with MSVC.
-    - patches/Use-Win32-native-calls-for-atomic-also-with-clang-cl.patch
+      - patches/Use-Win32-native-calls-for-atomic-also-with-clang-cl.patch
 
 build:
-  number: 1
+  number: 2
   dynamic_linking:
     missing_dso_allowlist:
       - if: osx
@@ -42,17 +42,17 @@ build:
     exclude:
       - if: unix
         then:
-        - lib/python*/site-packages/deploy_libs/**/*
-        - lib/python*/site-packages/panda3d_tools/**/*
-        - lib/python*/site-packages/pandac/**/*
-        - lib/python*/site-packages/**/__pycache__
+          - lib/python*/site-packages/deploy_libs/**/*
+          - lib/python*/site-packages/panda3d_tools/**/*
+          - lib/python*/site-packages/pandac/**/*
+          - lib/python*/site-packages/**/__pycache__
       - if: win
         then:
-        - Lib/site-packages/deploy_libs/**/*
-        - Lib/site-packages/panda3d_tools/**/*
-        - Lib/site-packages/pandac/**/*
-        - Lib/site-packages/**/__pycache__
-        - Library/**/*.pdb
+          - Lib/site-packages/deploy_libs/**/*
+          - Lib/site-packages/panda3d_tools/**/*
+          - Lib/site-packages/pandac/**/*
+          - Lib/site-packages/**/__pycache__
+          - Library/**/*.pdb
 
 requirements:
   build:
