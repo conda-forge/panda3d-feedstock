@@ -23,13 +23,11 @@ cxx_compiler:
 cxx_compiler_version:
 - '19'
 ffmpeg:
-- '7'
+- '8'
 fftw:
 - '3'
 freetype:
 - '2'
-harfbuzz:
-- 11.0.1
 libjpeg_turbo:
 - '3'
 libode:
