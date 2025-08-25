@@ -13,13 +13,11 @@ channel_targets:
 cxx_compiler:
 - vs2022
 ffmpeg:
-- '7'
+- '8'
 fftw:
 - '3'
 freetype:
 - '2'
-harfbuzz:
-- 11.0.1
 libjpeg_turbo:
 - '3'
 libode:
