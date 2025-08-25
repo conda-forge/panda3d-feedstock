@@ -1,7 +1,6 @@
 context:
   name: panda3d
   version: 1.10.15
-  build_num: 1
 
 package:
   name: ${{ name }}
