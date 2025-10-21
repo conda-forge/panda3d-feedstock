@@ -3,23 +3,15 @@ assimp:
 bullet_cpp:
 - '3.25'
 c_compiler:
-- gcc
-c_compiler_version:
-- '14'
+- vs2022
 c_stdlib:
-- sysroot
-c_stdlib_version:
-- '2.17'
+- vs
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- gxx
-cxx_compiler_version:
-- '14'
-docker_image:
-- quay.io/condaforge/linux-anvil-x86_64:alma9
+- vs2022
 ffmpeg:
 - '8'
 fftw:
@@ -32,8 +24,6 @@ libode:
 - 0.16.5
 libpng:
 - '1.6'
-libxcb:
-- '1'
 mimalloc:
 - 3.1.5
 numpy:
@@ -45,11 +35,8 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.10.* *_cpython
+- 3.14.* *_cp314
 target_platform:
-- linux-64
-zip_keys:
-- - c_compiler_version
-  - cxx_compiler_version
+- win-64
 zlib:
 - '1'
