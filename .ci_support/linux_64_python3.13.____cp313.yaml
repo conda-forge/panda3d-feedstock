@@ -29,7 +29,7 @@ freetype:
 libjpeg_turbo:
 - '3'
 libode:
-- 0.16.5
+- 0.16.6
 libpng:
 - '1.6'
 libxcb:
