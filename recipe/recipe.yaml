@@ -1,6 +1,6 @@
 context:
   name: panda3d
-  version: 1.10.15
+  version: "1.10.16"
 
 package:
   name: ${{ name }}
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/panda3d/panda3d/archive/v${{ version }}.tar.gz
-    sha256: dfe93123a73570377ef77c2a1b6ecff46c9b507750d8bedde07f9244cc1e741e
+    sha256: 25d04b2b6ab2c45a0b0cc3ba7a01aa66aabc0e4473b2aa83038e1d61ce1ece2e
 
     patches:
       - if: win or osx
@@ -31,7 +31,7 @@ source:
       - patches/Use-Win32-native-calls-for-atomic-also-with-clang-cl.patch
 
 build:
-  number: 5
+  number: 0
   dynamic_linking:
     missing_dso_allowlist:
       - if: osx
