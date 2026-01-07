@@ -1,0 +1,29 @@
+From ee2853bca2aafbed47752f848baddb9ba1f9a2e8 Mon Sep 17 00:00:00 2001
+From: Olivier Roussel <olivier.roussel@inria.fr>
+Date: Tue, 18 Mar 2025 17:07:05 +0100
+Subject: [PATCH] add possibility to use env var to set osx SDK dir
+
+---
+ makepanda/makepandacore.py | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/makepanda/makepandacore.py b/makepanda/makepandacore.py
+index 6a6cd79b81..19f3c6238b 100644
+--- a/makepanda/makepandacore.py
++++ b/makepanda/makepandacore.py
+@@ -2500,7 +2500,11 @@ def SdkLocateMacOSX(osxtarget = None, archs = []):
+         else:
+             sdkname = "MacOSX%d.%d" % osxtarget
+ 
+-        if (os.path.exists("/Library/Developer/CommandLineTools/SDKs/%s.sdk" % sdkname)):
++        sdk_root_conda_build = os.environ.get('OSX_SDK_DIR')
++        if sdk_root_conda_build:
++            SDK["MACOSX"] = "%s/%s.sdk" % (sdk_root_conda_build, sdkname)
++            print("============== SDK[MACOSX]=", SDK["MACOSX"])
++        elif (os.path.exists("/Library/Developer/CommandLineTools/SDKs/%s.sdk" % sdkname)):
+             SDK["MACOSX"] = "/Library/Developer/CommandLineTools/SDKs/%s.sdk" % sdkname
+         elif (os.path.exists("/Developer/SDKs/%su.sdk" % sdkname)):
+             SDK["MACOSX"] = "/Developer/SDKs/%su.sdk" % sdkname
+-- 
+2.34.1
+
