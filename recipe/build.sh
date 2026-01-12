@@ -59,6 +59,7 @@ $PYTHON makepanda/makepanda.py \
     --outputdir=build \
     --everything \
     --verbose \
+    --arch arm64 \
     $ADDITIONAL_OPTIONS
 
 # Manual installation of other elements
