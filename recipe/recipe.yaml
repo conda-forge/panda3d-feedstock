@@ -35,7 +35,7 @@ source:
       - patches/Use-Win32-native-calls-for-atomic-also-with-clang-cl.patch
 
 build:
-  number: 0
+  number: 1
   dynamic_linking:
     missing_dso_allowlist:
       - if: osx
