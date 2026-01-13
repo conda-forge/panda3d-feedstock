@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Add path for wanted dependencies
 for l in \
     assimp \
@@ -52,14 +54,37 @@ do
     export ADDITIONAL_OPTIONS=--no-$l\ $ADDITIONAL_OPTIONS
 done
 
+export OSX_SDK_DIR=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
+
+# Bug: BUILD_PREFIX is not updated yet at this point ??
+echo $BUILD_PREFIX
+echo $PREFIX
+echo $CONDA_PREFIX
+
+#BUILD_PREFIX=$PREFIX/../build_env
+$BUILD_PREFIX/bin/python makepanda/makepanda.py \
+    --threads=8 \
+    --outputdir=build_minimal \
+    --nothing \
+    --verbose \
+    --osxtarget 14.0 
+
+echo "---------------------------"
+# echo "---------which PYTHON ------------"
+# which $PYTHON
+echo "------which BUILD_PREFIX/bin/python----------"
+which $BUILD_PREFIX/bin/python
+
+echo "---------------------------"
 
 # Build panda using special panda3d tool
-$PYTHON makepanda/makepanda.py \
-    --threads=${CPU_COUNT} \
+$BUILD_PREFIX/bin/python makepanda/makepanda.py \
+    --threads=1 \
     --outputdir=build \
     --everything \
     --verbose \
     --arch arm64 \
+    --osxtarget 14.0 \
     $ADDITIONAL_OPTIONS
 
 # Manual installation of other elements
