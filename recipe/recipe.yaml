@@ -66,9 +66,14 @@ requirements:
       then:
         - make
         - rsync
+        - bison
     - cmake
     - pkg-config
     - doxygen
+    - if: build_platform != target_platform
+      then:
+        - python
+        - numpy
   host:
     - libogg
     - pillow
@@ -98,7 +103,7 @@ requirements:
     # Packages to specify to panda3d not on win
     - if: unix
       then:
-        - bison
+        # - bison
         - opusfile
     # Packages available on conda but incompatible with other recent packages pinning
     # - openexr 2.5.5*
