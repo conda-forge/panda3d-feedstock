@@ -54,6 +54,8 @@ do
     export ADDITIONAL_OPTIONS=--no-$l\ $ADDITIONAL_OPTIONS
 done
 
+which $PYTHON
+
 # When cross-compiling, we must first compile panda3d specific build tools on host and make
 # them available for target build then
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULATOR:-}" == "" ]]; then
@@ -84,6 +86,8 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULA
 
   if [[ "$target_platform" == "osx-arm64" ]]; then
     export ADDITIONAL_OPTIONS=--arch\ arm64\ $ADDITIONAL_OPTIONS
+  elif [[ "$target_platform" == "linux-aarch64" ]]; then
+    export ADDITIONAL_OPTIONS=--arch\ aarch64\ $ADDITIONAL_OPTIONS
   fi
 fi
 
