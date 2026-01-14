@@ -54,37 +54,45 @@ do
     export ADDITIONAL_OPTIONS=--no-$l\ $ADDITIONAL_OPTIONS
 done
 
-export OSX_SDK_DIR=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
+# When cross-compiling, we must first compile panda3d specific build tools on host and make
+# them available for target build then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULATOR:-}" == "" ]]; then
+(
+  export CC=$CC_FOR_BUILD
+  export CXX=$CXX_FOR_BUILD
+  export LDFLAGS=${LDFLAGS//$PREFIX/$BUILD_PREFIX}
+  export CFLAGS=${CFLAGS//$PREFIX/$BUILD_PREFIX}
+  export CXXFLAGS=${CXXFLAGS//$PREFIX/$BUILD_PREFIX}
 
-# Bug: BUILD_PREFIX is not updated yet at this point ??
-echo $BUILD_PREFIX
-echo $PREFIX
-echo $CONDA_PREFIX
+  # Just build build tools on host (interrogate, pzip, etc...)
+  # Maybe some other modules could be disabled from this build
+  $BUILD_PREFIX/bin/python makepanda/makepanda.py \
+      --threads=$CPU_COUNT \
+      --outputdir=build_minimal \
+      --use-zlib --zlib-incdir $PREFIX/include --zlib-libdir $PREFIX/lib \
+      --use-egg \
+      --no-python \
+      --no-ode \
+      --verbose
+)
+  # These env vars will be used by makepanda on target to use host build
+  # tools on cross compile
+  export PANDA3D_INTERROGATE=$PWD/build_minimal/bin/interrogate
+  export PANDA3D_INTERROGATE_MODULE=$PWD/build_minimal/bin/interrogate_module
+  export PANDA3D_PZIP=$PWD/build_minimal/bin/pzip
+  export PANDA3D_FLT2EGG=$PWD/build_minimal/bin/flt2egg
 
-#BUILD_PREFIX=$PREFIX/../build_env
-$BUILD_PREFIX/bin/python makepanda/makepanda.py \
-    --threads=8 \
-    --outputdir=build_minimal \
-    --nothing \
-    --verbose \
-    --osxtarget 14.0 
-
-echo "---------------------------"
-# echo "---------which PYTHON ------------"
-# which $PYTHON
-echo "------which BUILD_PREFIX/bin/python----------"
-which $BUILD_PREFIX/bin/python
-
-echo "---------------------------"
+  if [[ "$target_platform" == "osx-arm64" ]]; then
+    export ADDITIONAL_OPTIONS=--arch\ arm64\ $ADDITIONAL_OPTIONS
+  fi
+fi
 
 # Build panda using special panda3d tool
 $BUILD_PREFIX/bin/python makepanda/makepanda.py \
-    --threads=1 \
+    --threads=$CPU_COUNT \
     --outputdir=build \
     --everything \
-    --verbose \
-    --arch arm64 \
-    --osxtarget 14.0 \
+    --verbose
     $ADDITIONAL_OPTIONS
 
 # Manual installation of other elements
