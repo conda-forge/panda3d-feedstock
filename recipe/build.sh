@@ -71,12 +71,47 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULA
   $BUILD_PREFIX/bin/python makepanda/makepanda.py \
       --threads=$CPU_COUNT \
       --outputdir=build_minimal \
-      --use-zlib --zlib-incdir $PREFIX/include --zlib-libdir $PREFIX/lib \
+      --use-zlib --zlib-incdir $BUILD_PREFIX/include --zlib-libdir $BUILD_PREFIX/lib \
       --use-egg \
-      --no-python \
+      --no-assimp \
+      --no-artoolkit \
+      --no-bullet \
+      --no-eigen \
+      --no-egl \
+      --no-artoolkit \
+      --no-fcollada \
+      --no-ffmpeg \
+      --no-fftw \
+      --no-fltk \
+      --no-fmodex \
+      --no-freetype \
+      --no-gl \
+      --no-gles \
+      --no-gles2 \
+      --no-gtk2 \
+      --no-harfbuzz \
+      --no-jpeg \
+      --no-mimalloc \
+      --no-nvidiacg \
       --no-ode \
+      --no-openal \
+      --no-opencv \
+      --no-openssl \
+      --no-opus \
+      --no-png \
+      --no-python \
+      --no-rocket \
+      --no-squish \
+      --no-swresample \
+      --no-swscale \
+      --no-tiff \
+      --no-vorbis \
+      --no-vrpn \
+      --no-wx \
+      --no-x11 \
       --verbose
 )
+
   # These env vars will be used by makepanda on target to use host build
   # tools on cross compile
   export PANDA3D_INTERROGATE=$PWD/build_minimal/bin/interrogate
@@ -91,12 +126,16 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULA
   fi
 fi
 
+echo "===================================="
+echo "Starting makepanda for target"
+echo "ADDITIONAL_OPTIONS = $ADDITIONAL_OPTIONS"
+echo "===================================="
 # Build panda using special panda3d tool
 $BUILD_PREFIX/bin/python makepanda/makepanda.py \
     --threads=$CPU_COUNT \
     --outputdir=build \
     --everything \
-    --verbose
+    --verbose \
     $ADDITIONAL_OPTIONS
 
 # Manual installation of other elements

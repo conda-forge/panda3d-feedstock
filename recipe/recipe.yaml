@@ -73,10 +73,10 @@ requirements:
     - cmake
     - pkg-config
     - doxygen
+    - python
     - if: build_platform != target_platform
       then:
-        - python
-        - numpy
+        - zlib
   host:
     - libogg
     - pillow
