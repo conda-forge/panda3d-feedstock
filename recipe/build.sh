@@ -121,10 +121,11 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULA
   # On linux cross-compilation we also need to set manually the rpath of
   # host built tools...
   if [[ "$target_platform" == "linux-aarch64" ]]; then
-    patchelf --set-rpath '$ORIGIN/../lib' $PANDA3D_INTERROGATE
-    patchelf --set-rpath '$ORIGIN/../lib' $PANDA3D_INTERROGATE_MODULE
-    patchelf --set-rpath '$ORIGIN/../lib' $PANDA3D_PZIP
-    patchelf --set-rpath '$ORIGIN/../lib' $PANDA3D_FLT2EGG
+
+    patchelf --set-rpath "\$ORIGIN/../lib:$BUILD_PREFIX/lib" $PANDA3D_INTERROGATE
+    patchelf --set-rpath "\$ORIGIN/../lib:$BUILD_PREFIX/lib" $PANDA3D_INTERROGATE_MODULE
+    patchelf --set-rpath "\$ORIGIN/../lib:$BUILD_PREFIX/lib" $PANDA3D_PZIP
+    patchelf --set-rpath "\$ORIGIN/../lib:$BUILD_PREFIX/lib" $PANDA3D_FLT2EGG
     echo "============  ldd interrogate =================="
     ldd $PANDA3D_INTERROGATE
     echo "===================================="
