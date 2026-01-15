@@ -106,7 +106,6 @@ requirements:
     # Packages to specify to panda3d not on win
     - if: unix
       then:
-        # - bison
         - opusfile
     # Packages available on conda but incompatible with other recent packages pinning
     # - openexr 2.5.5*
