@@ -111,13 +111,21 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULA
       --no-x11 \
       --verbose
 )
-
   # These env vars will be used by makepanda on target to use host build
   # tools on cross compile
   export PANDA3D_INTERROGATE=$PWD/build_minimal/bin/interrogate
   export PANDA3D_INTERROGATE_MODULE=$PWD/build_minimal/bin/interrogate_module
   export PANDA3D_PZIP=$PWD/build_minimal/bin/pzip
   export PANDA3D_FLT2EGG=$PWD/build_minimal/bin/flt2egg
+
+  # On linux cross-compilation we also need to set manually the rpath of
+  # host built tools...
+  if [[ "$target_platform" == "linux-aarch64" ]]; then
+    patchelf --set-rpath '$ORIGIN/../lib' $PANDA3D_INTERROGATE
+    patchelf --set-rpath '$ORIGIN/../lib' $PANDA3D_INTERROGATE_MODULE
+    patchelf --set-rpath '$ORIGIN/../lib' $PANDA3D_PZIP
+    patchelf --set-rpath '$ORIGIN/../lib' $PANDA3D_FLT2EGG
+  fi
 
   if [[ "$target_platform" == "osx-arm64" ]]; then
     export ADDITIONAL_OPTIONS=--arch\ arm64\ $ADDITIONAL_OPTIONS
