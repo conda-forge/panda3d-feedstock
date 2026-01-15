@@ -125,6 +125,10 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULA
     patchelf --set-rpath '$ORIGIN/../lib' $PANDA3D_INTERROGATE_MODULE
     patchelf --set-rpath '$ORIGIN/../lib' $PANDA3D_PZIP
     patchelf --set-rpath '$ORIGIN/../lib' $PANDA3D_FLT2EGG
+    echo "============  ldd interrogate =================="
+    ldd $PANDA3D_INTERROGATE
+    echo "===================================="
+
   fi
 
   if [[ "$target_platform" == "osx-arm64" ]]; then
