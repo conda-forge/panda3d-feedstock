@@ -184,17 +184,17 @@ tests:
       imports:
         - panda3d
         - direct
-  # - files:
-  #     recipe:
-  #       - test/
-  #   requirements:
-  #     run:
-  #       - ${{ stdlib('c') }}
-  #       - ${{ compiler('cxx') }}
-  #       - cmake
-  #       - ninja
-  #       - eigen
-  #   script: run_test
+  - files:
+      recipe:
+        - test/
+    requirements:
+      run:
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - ninja
+        - eigen
+    script: run_test
 
 about:
   homepage: https://www.panda3d.org/
