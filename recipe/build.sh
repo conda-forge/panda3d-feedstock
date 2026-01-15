@@ -150,6 +150,9 @@ $BUILD_PREFIX/bin/python makepanda/makepanda.py \
     --verbose \
     $ADDITIONAL_OPTIONS
 
+echo "============= ldd interrogate on target ==============="
+ldd build/bin/interrogate
+
 # Manual installation of other elements
 cd build
 
