@@ -39,7 +39,7 @@ libpng:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 mimalloc:
-- 3.2.6
+- 3.2.7
 numpy:
 - '2'
 openssl:
