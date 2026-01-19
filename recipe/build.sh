@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Add path for wanted dependencies
 for l in \
     assimp \
@@ -52,10 +54,93 @@ do
     export ADDITIONAL_OPTIONS=--no-$l\ $ADDITIONAL_OPTIONS
 done
 
+which $PYTHON
 
+# When cross-compiling, we must first compile panda3d specific build tools on host and make
+# them available for target build then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULATOR:-}" == "" ]]; then
+(
+  export CC=$CC_FOR_BUILD
+  export CXX=$CXX_FOR_BUILD
+  export LDFLAGS=${LDFLAGS//$PREFIX/$BUILD_PREFIX}
+  export CFLAGS=${CFLAGS//$PREFIX/$BUILD_PREFIX}
+  export CXXFLAGS=${CXXFLAGS//$PREFIX/$BUILD_PREFIX}
+
+  # Just build build tools on host (interrogate, pzip, etc...)
+  # Maybe some other modules could be disabled from this build
+  $BUILD_PREFIX/bin/python makepanda/makepanda.py \
+      --threads=$CPU_COUNT \
+      --outputdir=build_minimal \
+      --use-zlib --zlib-incdir $BUILD_PREFIX/include --zlib-libdir $BUILD_PREFIX/lib \
+      --use-egg \
+      --no-assimp \
+      --no-artoolkit \
+      --no-bullet \
+      --no-eigen \
+      --no-egl \
+      --no-artoolkit \
+      --no-fcollada \
+      --no-ffmpeg \
+      --no-fftw \
+      --no-fltk \
+      --no-fmodex \
+      --no-freetype \
+      --no-gl \
+      --no-gles \
+      --no-gles2 \
+      --no-gtk2 \
+      --no-harfbuzz \
+      --no-jpeg \
+      --no-mimalloc \
+      --no-nvidiacg \
+      --no-ode \
+      --no-openal \
+      --no-opencv \
+      --no-openssl \
+      --no-opus \
+      --no-png \
+      --no-python \
+      --no-rocket \
+      --no-squish \
+      --no-swresample \
+      --no-swscale \
+      --no-tiff \
+      --no-vorbis \
+      --no-vrpn \
+      --no-wx \
+      --no-x11 \
+      --verbose
+)
+  # These env vars will be used by makepanda on target to use host build
+  # tools on cross compile
+  export PANDA3D_INTERROGATE=$PWD/build_minimal/bin/interrogate
+  export PANDA3D_INTERROGATE_MODULE=$PWD/build_minimal/bin/interrogate_module
+  export PANDA3D_PZIP=$PWD/build_minimal/bin/pzip
+  export PANDA3D_FLT2EGG=$PWD/build_minimal/bin/flt2egg
+
+  # On linux cross-compilation we also need to set manually the rpath of
+  # host built tools...
+  if [[ "$target_platform" == "linux-aarch64" ]]; then
+    patchelf --set-rpath "\$ORIGIN/../lib:$BUILD_PREFIX/lib" $PANDA3D_INTERROGATE
+    patchelf --set-rpath "\$ORIGIN/../lib:$BUILD_PREFIX/lib" $PANDA3D_INTERROGATE_MODULE
+    patchelf --set-rpath "\$ORIGIN/../lib:$BUILD_PREFIX/lib" $PANDA3D_PZIP
+    patchelf --set-rpath "\$ORIGIN/../lib:$BUILD_PREFIX/lib" $PANDA3D_FLT2EGG
+  fi
+
+  if [[ "$target_platform" == "osx-arm64" ]]; then
+    export ADDITIONAL_OPTIONS=--arch\ arm64\ $ADDITIONAL_OPTIONS
+  elif [[ "$target_platform" == "linux-aarch64" ]]; then
+    export ADDITIONAL_OPTIONS=--arch\ aarch64\ $ADDITIONAL_OPTIONS
+  fi
+fi
+
+echo "===================================="
+echo "Starting makepanda for target"
+echo "ADDITIONAL_OPTIONS = $ADDITIONAL_OPTIONS"
+echo "===================================="
 # Build panda using special panda3d tool
-$PYTHON makepanda/makepanda.py \
-    --threads=${CPU_COUNT} \
+$BUILD_PREFIX/bin/python makepanda/makepanda.py \
+    --threads=$CPU_COUNT \
     --outputdir=build \
     --everything \
     --verbose \

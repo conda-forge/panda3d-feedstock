@@ -34,6 +34,9 @@ source:
     # as it is done with MSVC.
       - patches/Use-Win32-native-calls-for-atomic-also-with-clang-cl.patch
 
+    # Fix cross-compilation to handle case of only different archs on same target and make possible
+    # to use host panda build tools for cross compile target build
+      - patches/0001-fix-use-of-host-build-tools-when-cross-compiling.patch
 build:
   number: 2
   dynamic_linking:
@@ -66,9 +69,14 @@ requirements:
       then:
         - make
         - rsync
+        - bison
     - cmake
     - pkg-config
     - doxygen
+    - python
+    - if: build_platform != target_platform
+      then:
+        - zlib
   host:
     - libogg
     - pillow
@@ -98,7 +106,6 @@ requirements:
     # Packages to specify to panda3d not on win
     - if: unix
       then:
-        - bison
         - opusfile
     # Packages available on conda but incompatible with other recent packages pinning
     # - openexr 2.5.5*
