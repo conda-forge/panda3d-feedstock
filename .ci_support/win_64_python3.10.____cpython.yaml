@@ -12,6 +12,8 @@ channel_targets:
 - conda-forge main
 cxx_compiler:
 - vs2022
+eigen_abi_devel:
+- 3.4.0
 ffmpeg:
 - '8'
 fftw:
