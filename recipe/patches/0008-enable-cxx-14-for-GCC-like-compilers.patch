@@ -1,0 +1,25 @@
+From b977bf406eb9b03e3e26c03a15bbebbe6bb02f0a Mon Sep 17 00:00:00 2001
+From: Olivier Roussel <oroussel@laas.fr>
+Date: Thu, 26 Mar 2026 14:03:27 +0100
+Subject: [PATCH] 0008 enable c++14 for GCC like compilers
+
+---
+ makepanda/makepanda.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/makepanda/makepanda.py b/makepanda/makepanda.py
+index 3493fa4ba9..07694c32dd 100755
+--- a/makepanda/makepanda.py
++++ b/makepanda/makepanda.py
+@@ -1557,7 +1557,7 @@ def CompileCxx(obj,src,opts):
+ 
+     if (COMPILER=="GCC"):
+         if (src.endswith(".c")): cmd = GetCC() +' -fPIC -c -o ' + obj
+-        else:                    cmd = GetCXX()+' -std=gnu++11 -ftemplate-depth-70 -fPIC -c -o ' + obj
++        else:                    cmd = GetCXX()+' -std=gnu++14 -ftemplate-depth-70 -fPIC -c -o ' + obj
+         for (opt, dir) in INCDIRECTORIES:
+             if (opt=="ALWAYS") or (opt in opts): cmd += ' -I' + BracketNameWithQuotes(dir)
+         for (opt, dir) in FRAMEWORKDIRECTORIES:
+-- 
+2.25.1
+

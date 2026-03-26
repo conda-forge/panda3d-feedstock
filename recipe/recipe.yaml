@@ -35,6 +35,9 @@ source:
       # to use host panda build tools for cross compile target build
       - patches/0007-fix-use-of-host-build-tools-when-cross-compiling.patch
 
+      # Enable c++14 support (for Eigen v5) on unix compilers (already enabled by default on MSVC)
+      - patches/0008-enable-cxx-14-for-GCC-like-compilers.patch
+
 build:
   number: 6
   dynamic_linking:
