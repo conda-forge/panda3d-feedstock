@@ -18,7 +18,7 @@ source:
       - patches/0002-fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch
 
       # Only for win
-      - patches/0003-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch    
+      - patches/0003-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch
       - patches/0004-use-non-static-mimalloc.patch
 
       # fix the ressource model directory to installed on in <prefix>/share/panda3d
@@ -39,7 +39,7 @@ source:
       - patches/0008-enable-cxx-14-for-GCC-like-compilers.patch
 
 build:
-  number: 6
+  number: 7
   dynamic_linking:
     missing_dso_allowlist:
       - if: osx
