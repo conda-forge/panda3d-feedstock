@@ -1,20 +1,22 @@
-From 2080476bb12b1cd06c73732a060314108f9cf5f1 Mon Sep 17 00:00:00 2001
+From c27ccb8f58eaca7b29c43fb7ebd23b243c3fffdb Mon Sep 17 00:00:00 2001
 From: Olivier Roussel <olivier.roussel31@gmail.com>
 Date: Tue, 21 Apr 2026 11:58:46 +0200
 Subject: [PATCH] add debug outputs
 
 ---
- makepanda/makepandacore.py | 1 +
- 1 file changed, 1 insertion(+)
+ makepanda/makepandacore.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/makepanda/makepandacore.py b/makepanda/makepandacore.py
-index 5e7fd98f38..0164ede2d3 100644
+index 5e7fd98f38..c25c536ef7 100644
 --- a/makepanda/makepandacore.py
 +++ b/makepanda/makepandacore.py
-@@ -2509,6 +2509,7 @@ def SdkLocateMacOSX(osxtarget = None, archs = []):
+@@ -2508,7 +2508,8 @@ def SdkLocateMacOSX(osxtarget = None, archs = []):
+         else:
              sdkname = "MacOSX%d.%d" % osxtarget
  
-         sdk_root_conda_build = os.environ.get('OSX_SDK_DIR')
+-        sdk_root_conda_build = os.environ.get('OSX_SDK_DIR')
++        sdk_root_conda_build = os.environ.get('PANDA3D_OSX_SDK_DIR')
 +        print("============== sdk_root_conda_build = ", sdk_root_conda_build)
          if sdk_root_conda_build:
              SDK["MACOSX"] = "%s/%s.sdk" % (sdk_root_conda_build, sdkname)
