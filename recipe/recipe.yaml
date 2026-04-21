@@ -38,6 +38,9 @@ source:
       # Enable c++14 support (for Eigen v5) on unix compilers (already enabled by default on MSVC)
       - patches/0008-enable-cxx-14-for-GCC-like-compilers.patch
 
+      # debugging macos failure
+      - patches/0009-add-debug-outputs.patch
+
 build:
   number: 7
   dynamic_linking:

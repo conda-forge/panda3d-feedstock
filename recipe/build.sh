@@ -137,6 +137,7 @@ fi
 echo "===================================="
 echo "Starting makepanda for target"
 echo "ADDITIONAL_OPTIONS = $ADDITIONAL_OPTIONS"
+echo "OSX_SDK_DIR env var set to: $OSX_SDK_DIR"
 echo "===================================="
 # Build panda using special panda3d tool
 $BUILD_PREFIX/bin/python makepanda/makepanda.py \
