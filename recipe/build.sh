@@ -54,7 +54,11 @@ do
     export ADDITIONAL_OPTIONS=--no-$l\ $ADDITIONAL_OPTIONS
 done
 
-which $PYTHON
+if [[ "$target_platform" == osx-* ]]; then
+  # We can't use OSX_SDK_DIR env var anymore as it seems not set at this point since around macOS SDK 11.0
+  export PANDA3D_OSX_SDK_DIR=$CONDA_BUILD_SYSROOT/..
+  echo "PANDA3D_OSX_SDK_DIR env var set to: $PANDA3D_OSX_SDK_DIR"
+fi
 
 # When cross-compiling, we must first compile panda3d specific build tools on host and make
 # them available for target build then
@@ -137,10 +141,6 @@ fi
 echo "===================================="
 echo "Starting makepanda for target"
 echo "ADDITIONAL_OPTIONS = $ADDITIONAL_OPTIONS"
-# We can't use OSX_SDK_DIR env var anymore as it seems not set at this point since around macOS SDK 11.0
-# XXX to be replaced by CONDA_BUILD_SYSROOT/.. ?
-export PANDA3D_OSX_SDK_DIR=/opt/conda-sdks
-echo "PANDA3D_OSX_SDK_DIR env var set to: $PANDA3D_OSX_SDK_DIR"
 echo "===================================="
 # Build panda using special panda3d tool
 $BUILD_PREFIX/bin/python makepanda/makepanda.py \
