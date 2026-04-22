@@ -54,7 +54,11 @@ do
     export ADDITIONAL_OPTIONS=--no-$l\ $ADDITIONAL_OPTIONS
 done
 
-which $PYTHON
+if [[ "$target_platform" == osx-* ]]; then
+  # We can't use OSX_SDK_DIR env var anymore as it seems not set at this point since around macOS SDK 11.0
+  export PANDA3D_OSX_SDK_DIR=$CONDA_BUILD_SYSROOT/..
+  echo "PANDA3D_OSX_SDK_DIR env var set to: $PANDA3D_OSX_SDK_DIR"
+fi
 
 # When cross-compiling, we must first compile panda3d specific build tools on host and make
 # them available for target build then
@@ -214,3 +218,10 @@ do
     mkdir -p "${PREFIX}/etc/conda/${CHANGE}.d"
     cp "${RECIPE_DIR}/scripts/${CHANGE}.sh" "${PREFIX}/etc/conda/${CHANGE}.d/${PKG_NAME}_${CHANGE}.sh"
 done
+
+# Remove build dir
+cd ..
+rm -rf build
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULATOR:-}" == "" ]]; then
+  rm -rf build_minimal
+fi

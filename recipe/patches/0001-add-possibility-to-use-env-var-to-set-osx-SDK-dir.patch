@@ -16,7 +16,7 @@ index 6a6cd79b81..19f3c6238b 100644
              sdkname = "MacOSX%d.%d" % osxtarget
  
 -        if (os.path.exists("/Library/Developer/CommandLineTools/SDKs/%s.sdk" % sdkname)):
-+        sdk_root_conda_build = os.environ.get('OSX_SDK_DIR')
++        sdk_root_conda_build = os.environ.get('PANDA3D_OSX_SDK_DIR')
 +        if sdk_root_conda_build:
 +            SDK["MACOSX"] = "%s/%s.sdk" % (sdk_root_conda_build, sdkname)
 +            print("============== SDK[MACOSX]=", SDK["MACOSX"])

@@ -98,3 +98,7 @@ for %%F in (activate deactivate) DO (
   :: Copy unix shell activation scripts, needed by Windows Bash users
   copy %RECIPE_DIR%\scripts\%%F.sh %PREFIX%\etc\conda\%%F.d\%PKG_NAME%_%%F.sh
 )
+
+:: Remove build dir
+cd ..
+rmdir /s /q build
