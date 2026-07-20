@@ -1,5 +1,5 @@
 assimp:
-- 6.0.3
+- '6'
 bullet_cpp:
 - '3.25'
 c_compiler:
@@ -29,7 +29,7 @@ libogg:
 libpng:
 - '1.6'
 mimalloc:
-- 3.3.2
+- 3.4.1
 numpy:
 - '2'
 openssl:
