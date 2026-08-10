@@ -1,5 +1,5 @@
 assimp:
-- 6.0.3
+- '6'
 bullet_cpp:
 - '3.25'
 c_compiler:
@@ -19,11 +19,11 @@ cxx_compiler:
 cxx_compiler_version:
 - '14'
 docker_image:
-- quay.io/condaforge/linux-anvil-x86_64:alma9
+- quay.io/condaforge/linux-anvil-x86_64:alma10
 eigen_abi_devel:
 - 5.0.1
 ffmpeg:
-- '8'
+- '9'
 fftw:
 - '3'
 freetype:
@@ -39,7 +39,7 @@ libpng:
 libxcb:
 - '1'
 mimalloc:
-- 3.3.2
+- 3.4.1
 numpy:
 - '2'
 openssl:

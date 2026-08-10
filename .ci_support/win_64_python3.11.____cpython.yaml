@@ -1,5 +1,5 @@
 assimp:
-- 6.0.3
+- '6'
 bullet_cpp:
 - '3.25'
 c_compiler:
@@ -15,7 +15,7 @@ cxx_compiler:
 eigen_abi_devel:
 - 5.0.1
 ffmpeg:
-- '8'
+- '9'
 fftw:
 - '3'
 freetype:
@@ -29,7 +29,7 @@ libogg:
 libpng:
 - '1.6'
 mimalloc:
-- 3.3.2
+- 3.4.1
 numpy:
 - '2'
 openssl:
