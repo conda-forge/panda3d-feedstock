@@ -1,0 +1,25 @@
+From b815e0e2f03ee692201387228d0787b99a71d37f Mon Sep 17 00:00:00 2001
+From: Olivier Roussel <olivier.roussel31@gmail.com>
+Date: Tue, 11 Aug 2026 09:30:46 +0200
+Subject: [PATCH] enable c++17 for MSVC
+
+---
+ makepanda/makepanda.py | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/makepanda/makepanda.py b/makepanda/makepanda.py
+index 07694c32dd..d5e3d79410 100755
+--- a/makepanda/makepanda.py
++++ b/makepanda/makepanda.py
+@@ -1415,6 +1415,8 @@ def CompileCxx(obj,src,opts):
+             if GetTargetArch() == 'x64':
+                 cmd += "/favor:blend "
+             cmd += "/wd4996 /wd4275 /wd4273 "
++            # Conda-forge dependencies requires c++17 (provided by vs2022)
++            cmd += "/std:c++17 /D_HAS_STD_BYTE=0 "
+ 
+             # We still target Windows XP.
+             cmd += "/DWINVER=0x501 "
+-- 
+2.43.0
+
