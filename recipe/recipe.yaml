@@ -42,7 +42,7 @@ source:
       - patches/0009-enable-c-17-for-MSVC.patch
 
 build:
-  number: 9
+  number: 10
   dynamic_linking:
     missing_dso_allowlist:
       - if: osx
