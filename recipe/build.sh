@@ -211,13 +211,13 @@ rsync -a ../samples                  $PREFIX/share/panda3d
 cp ReleaseNotes                      $PREFIX/share/panda3d
 cp LICENSE                           $PREFIX/share/panda3d
 
-# Copy the [de]activate scripts to $PREFIX/etc/conda/[de]activate.d.
-# This will allow them to be run on environment activation.
-for CHANGE in "activate" "deactivate"
-do
-    mkdir -p "${PREFIX}/etc/conda/${CHANGE}.d"
-    cp "${RECIPE_DIR}/scripts/${CHANGE}.sh" "${PREFIX}/etc/conda/${CHANGE}.d/${PKG_NAME}_${CHANGE}.sh"
-done
+# Set PANDA_PRC_DIR on environment activation.
+mkdir -p "${PREFIX}/etc/conda/env_vars.d"
+cat > "${PREFIX}/etc/conda/env_vars.d/${PKG_NAME}.json" << EOF
+{
+  "PANDA_PRC_DIR": "${PREFIX}/etc/panda3d"
+}
+EOF
 
 # Remove build dir
 cd ..
