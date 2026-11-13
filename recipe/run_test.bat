@@ -1,5 +1,7 @@
 setlocal EnableDelayedExpansion
 
+if not defined PANDA_PRC_DIR exit 1
+
 cd test
 mkdir build
 
