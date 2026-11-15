@@ -90,14 +90,10 @@ robocopy ..\samples %LIBRARY_PREFIX%\share\panda3d\samples /E >nul
 copy ReleaseNotes %LIBRARY_PREFIX%\share\panda3d\
 copy LICENSE %LIBRARY_PREFIX%\share\panda3d\
 
-:: Copy the [de]activate scripts to %PREFIX%\etc\conda\[de]activate.d.
-:: This will allow them to be run on environment activation.
-for %%F in (activate deactivate) DO (
-  if not exist %PREFIX%\etc\conda\%%F.d mkdir %PREFIX%\etc\conda\%%F.d
-  copy %RECIPE_DIR%\scripts\%%F.bat %PREFIX%\etc\conda\%%F.d\%PKG_NAME%_%%F.bat
-  :: Copy unix shell activation scripts, needed by Windows Bash users
-  copy %RECIPE_DIR%\scripts\%%F.sh %PREFIX%\etc\conda\%%F.d\%PKG_NAME%_%%F.sh
-)
+:: Set PANDA_PRC_DIR on environment activation.
+if not exist "%PREFIX%\etc\conda\env_vars.d" mkdir "%PREFIX%\etc\conda\env_vars.d"
+echo {"PANDA_PRC_DIR": "%PREFIX:\=/%/Library/etc/panda3d"}> "%PREFIX%\etc\conda\env_vars.d\%PKG_NAME%.json"
+if errorlevel 1 exit 1
 
 :: Remove build dir
 cd ..
