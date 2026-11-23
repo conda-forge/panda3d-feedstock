@@ -86,6 +86,8 @@ requirements:
     - pillow
     - pip
     - python
+    - if: match(python, ">=3.15")
+      then: libpython
     - numpy
     - setuptools
     # Common packages to specify to panda3d
