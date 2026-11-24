@@ -1,3 +1,4 @@
+@echo off
 set ADDITIONAL_OPTIONS=
 
 :: Add path for wanted dependencies
@@ -14,7 +15,6 @@ for %%l in (^
     openal ^
     openssl ^
     png ^
-    python ^
     swresample ^
     swscale ^
     tiff ^
@@ -24,6 +24,16 @@ for %%l in (^
     call set "ADDITIONAL_OPTIONS= --%%l-incdir=%LIBRARY_INC% %%ADDITIONAL_OPTIONS%%"
     call set "ADDITIONAL_OPTIONS= --%%l-libdir=%LIBRARY_LIB% %%ADDITIONAL_OPTIONS%%"
 )
+
+:: Special treatment for python due to recent changes in 3.15
+:: https://github.com/conda-forge/python-feedstock/pull/873
+for /f "delims=" %%i in ('%PYTHON% -c "import sysconfig; print(sysconfig.get_paths()['include'])"') do set PY_INCDIR=%%i
+for /f "delims=" %%i in ('%PYTHON% -c "import sysconfig, os; print(os.path.join(sysconfig.get_config_var('installed_base'), 'libs'))"') do set PY_LIBDIR=%%i
+echo PY_INCDIR: %PY_INCDIR%
+echo PY_LIBDIR: %PY_LIBDIR%
+set ADDITIONAL_OPTIONS= --python-incdir=%PY_INCDIR% %ADDITIONAL_OPTIONS%
+set ADDITIONAL_OPTIONS= --python-libdir=%PY_LIBDIR% %ADDITIONAL_OPTIONS%
+
 :: Special treatment for eigen
 set ADDITIONAL_OPTIONS= --eigen-incdir=%LIBRARY_INC%\eigen3 %ADDITIONAL_OPTIONS%
 :: Exclude dependencies missing on conda
